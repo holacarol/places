@@ -1,4 +1,8 @@
 Places::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/contact"
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   # The priority is based upon order of creation:
