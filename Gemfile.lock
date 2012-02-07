@@ -34,6 +34,7 @@ GEM
     addressable (2.2.6)
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
+    annotate (2.4.1.beta1)
     arel (2.2.1)
     avatars_for_rails (0.2.2)
       foreigner (>= 0.9.1)
@@ -301,6 +302,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.4.1.beta)
   coffee-rails (~> 3.1.1)
   jquery-rails
   mysql2
