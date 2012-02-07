@@ -1,7 +1,7 @@
 Places::Application.routes.draw do
-  get "pages/home"
-  get "pages/contact"
-  get "pages/about"
+  match '/places', :to => 'pages#home'
+  match '/places/contact', :to => 'pages#contact'
+  match '/places/about', :to => 'pages#about'
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
