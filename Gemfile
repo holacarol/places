@@ -7,7 +7,6 @@ gem 'rails', '3.1.3'
 
 gem 'mysql2'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,6 +24,8 @@ gem 'therubyracer'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'faker', '0.3.1'
+  gem 'forgery', '0.5.0'
 end
 
 group :test do
