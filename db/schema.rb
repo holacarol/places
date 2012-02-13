@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206122712) do
+ActiveRecord::Schema.define(:version => 20120208175010) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -379,6 +379,8 @@ ActiveRecord::Schema.define(:version => 20120206122712) do
   add_foreign_key "events", "rooms", :name => "index_events_on_room_id"
 
   add_foreign_key "groups", "actors", :name => "groups_on_actor_id"
+
+  add_foreign_key "links", "activity_objects", :name => "links_on_activity_object_id"
 
   add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
 
