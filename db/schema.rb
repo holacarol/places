@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208175010) do
+ActiveRecord::Schema.define(:version => 20120213121416) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -66,6 +66,19 @@ ActiveRecord::Schema.define(:version => 20120208175010) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "addresses", :force => true do |t|
+    t.string   "formatted"
+    t.string   "streetAddress"
+    t.string   "locality"
+    t.string   "region"
+    t.string   "postalCode"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["streetAddress", "locality"], :name => "index_addresses_on_streetAddress_and_locality"
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
