@@ -20,4 +20,25 @@ namespace :db do
                  :password_confirmation => password)
     end
   end
+
+  desc "Fill user with places"
+  task :places => :environment do
+    puts 'Place population'
+    places_start = Time.now
+
+    2.times do |n|
+      Actor.all(:limit => 2).each do |a|
+        Place.create 	:title 		=> Faker::Company.name,
+			:position 	=> "+#{n+48.8577}+#{n+2.295}",
+			:url		=> Faker::Internet.domain_name,
+			:author_id	=> a.id,
+			:owner_id	=> a.id,
+			:user_author_id	=> a.id
+      end
+    end
+
+    places_end = Time.now
+    puts '	-> ' + (places_end - places_start).round(4).to_s + 's'
+  end
+
 end

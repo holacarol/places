@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213121416) do
+ActiveRecord::Schema.define(:version => 20120221121146) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
     t.string   "object_type", :limit => 45
     t.integer  "like_count",                :default => 0
     t.integer  "channel_id"
+    t.string   "title",                     :default => ""
+    t.text     "description"
   end
 
   add_index "activity_objects", ["channel_id"], :name => "index_activity_objects_on_channel_id"
@@ -123,7 +125,6 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
 
   create_table "comments", :force => true do |t|
     t.integer  "activity_object_id"
-    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -158,15 +159,12 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
     t.string   "file_content_type"
     t.string   "file_file_size"
     t.boolean  "file_processing"
-    t.string   "title"
-    t.text     "description"
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
 
   create_table "events", :force => true do |t|
     t.integer  "activity_object_id"
-    t.string   "title"
     t.datetime "start_at"
     t.datetime "end_at"
     t.boolean  "all_day"
@@ -181,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
     t.integer  "interval_flag",      :default => 0
   end
 
+  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "groups", :force => true do |t|
@@ -197,9 +196,7 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
     t.datetime "updated_at"
     t.string   "url"
     t.string   "callback_url"
-    t.string   "title"
     t.string   "image"
-    t.text     "description"
     t.integer  "width",              :default => 470
     t.integer  "height",             :default => 353
   end
@@ -230,11 +227,23 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
     t.datetime "updated_at"
   end
 
+  create_table "places", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.string   "position"
+    t.integer  "address_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "places", ["activity_object_id"], :name => "index_places_on_activity_object_id"
+  add_index "places", ["address_id"], :name => "index_places_on_address_id"
+  add_index "places", ["position"], :name => "index_places_on_position"
+
   create_table "posts", :force => true do |t|
     t.integer  "activity_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "text"
   end
 
   add_index "posts", ["activity_object_id"], :name => "index_posts_on_activity_object_id"
@@ -389,6 +398,7 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
 
   add_foreign_key "documents", "activity_objects", :name => "documents_on_activity_object_id"
 
+  add_foreign_key "events", "activity_objects", :name => "events_on_activity_object_id"
   add_foreign_key "events", "rooms", :name => "index_events_on_room_id"
 
   add_foreign_key "groups", "actors", :name => "groups_on_actor_id"
@@ -396,6 +406,9 @@ ActiveRecord::Schema.define(:version => 20120213121416) do
   add_foreign_key "links", "activity_objects", :name => "links_on_activity_object_id"
 
   add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
+
+  add_foreign_key "places", "activity_objects", :name => "places_on_activity_object_id"
+  add_foreign_key "places", "addresses", :name => "places_on_address_id"
 
   add_foreign_key "posts", "activity_objects", :name => "posts_on_activity_object_id"
 

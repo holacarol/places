@@ -1,0 +1,94 @@
+/* Places */
+
+.place_image {
+  float: left;
+  padding: 10px;
+}
+
+.place_info {
+  padding-top: 10px;
+}
+
+#place_comments {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: thin solid $separation-color;
+}
+
+#place_comments .new_comment.new_comment_shown {
+  width: 500px;
+}
+
+#place_comments .new_comment {
+  width: 550px;
+}
+
+#place_comments .activity, #place_comments .subactivity {
+  background: transparent;
+  border: none;
+}
+#place_comments .activity_new_comment {
+  display:block;
+}
+
+/* Place card */
+.place_card {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.place_card_frame {
+  text-align: left;
+  width: 250px;
+  padding: 10px;
+  height: 130px;
+  border: 2px solid gray;
+  margin: auto;
+  position: relative;
+}
+
+.place_icon {
+  float: right;
+}
+
+.place_name {
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.place_description {
+  position: absolute;
+  bottom: 10px;
+}
+
+.place_options {
+  padding-top: 5px;
+  text-align:center
+}
+
+/* Place item */
+.place_list_item {
+  margin: 10px 10px 0 10px;
+  border: 2px solid gray;
+  padding: 10px;
+  text-align: left;
+  width: 465px;
+  min-height: 45px;
+  position: relative;
+}
+
+.place_list_icon {
+  float: left;
+  margin-right: 10px;
+}
+
+.place_list_options {
+  position: absolute;
+  left: 300px;
+  top: 25px;
+}
+
+.place_list_comments {
+  margin: 0 0 10px 25px;
+}

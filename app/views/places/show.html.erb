@@ -1,0 +1,24 @@
+<% toolbar %><% sidebar %>
+
+<div class="place_card">
+  <div class="place_card_frame">
+    <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
+    <div class="place_name"><%= @place.title %></div>
+    <div class="place_description">
+      <div>Position: <%= @place.position %></div>
+      <div>URL: <%= @place.url %></div>
+    </div>
+  </div>
+</div>
+
+<div class="place_options">
+  <div class="verb_like" id="like_<%= dom_id(@place.post_activity) %>"><%= link_like(@place.post_activity)%></div>
+</div>
+
+<div id="place_comments">
+  <%= render :partial => 'activities/comments', :locals => { :activity => @place.post_activity } %>
+  <%= render :partial => 'comments/new', :locals => { :activity => @place.post_activity } %>
+</div>
+
+
+

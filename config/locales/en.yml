@@ -2,4 +2,31 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  place:
+    actions:
+      delete: "Delete"
+      details: "Details"
+      edit: "Edit"
+    all: "All places"
+    confirm_delete: "Delete place?"
+    form:
+      title: "Place"
+    info:
+      date:
+        created_at: "Created at"
+        updated_at: "Updated at"
+      file:
+        title: "Upload"
+      title:
+        title: "Title"
+    mine: "My places"
+    name: "place"
+    not_mine: "Places"
+    one: "a place"
+    simple_all: "All"
+    title: "Places"
+#  repository:
+#    order:
+#      by: "Order by"
+#      last_modified: "Last modified"
+#      most_popular: "Most popular"

@@ -1,4 +1,27 @@
 require File.expand_path('../boot', __FILE__)
+require 'rails/application'
+require 'rails/engine'
+require './lib/social_stream/toolbar_config/places'
+
+
+module Rails
+  class Application < Engine
+    def initializers
+      init = Bootstrap.initializers_for(self) #BOOTSTRAP
+      init += super #RAILTIES
+      init += Finisher.initializers_for(self) #FINISHER
+      print_initializers(init)
+      init
+     end
+  
+    def print_initializers(initializers)
+      initializers.each do |i|
+        p i.name
+      end
+      p "----------------------------"
+    end
+  end
+end
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -17,6 +40,13 @@ end
 
 module Places
   class Application < Rails::Application
+    
+    initializer "social_stream/toolbar_config/places" do
+      SocialStream::ToolbarConfig.module_eval do
+        include SocialStream::ToolbarConfig::Places
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

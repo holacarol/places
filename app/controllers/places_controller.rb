@@ -1,0 +1,19 @@
+class PlacesController < ApplicationController
+  include SocialStream::Controllers::Objects
+
+  belongs_to_subjects :optional => true
+
+  before_filter :profile_subject!, :only => :index
+
+  PER_PAGE = 20
+
+  private
+
+    def collection
+      @activities =
+        profile_subject.wall(:profile,
+			     :for => current_subject,
+			     :object_type => :Place)
+    end
+
+end

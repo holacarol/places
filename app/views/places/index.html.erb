@@ -1,0 +1,26 @@
+<% toolbar %><% sidebar %>
+<h1>All places</h1>
+<% unless @activities.empty? %>
+  <% @activities.each do |a| %>
+    <% place = a.activity_objects.first.place %>
+    
+    <%= div_for place do %>
+      <div class="activity_content">
+        <div class="place_list_item">
+          <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
+          <div class="place_name"><%= link_to place.title, place %></div>
+          <div class="place_list_options">
+            <div class="verb_comment"><%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
+            <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"> · <%= link_like(place.post_activity)%></div>
+          </div>
+        </div>
+        <div class="place_list_comments">
+          <%= render :partial => 'activities/comments',
+                     :locals => { :activity => a } %>
+          <%= render :partial => 'comments/new',
+                     :locals => { :activity => a } %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

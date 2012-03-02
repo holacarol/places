@@ -4,6 +4,9 @@ gem 'rails', '3.1.3'
 
 gem 'nokogiri', '1.4.2'
 
+# SQL foreign keys
+gem 'foreigner', '1.1.1'
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 

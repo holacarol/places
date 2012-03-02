@@ -1,0 +1,8 @@
+<%= div_for place, :class => 'content_size' do %>
+  <%=link_to image_tag("place.png", :alt => "New place"), place, :class => "place_image" %>
+
+  <div class="place_info">
+    <%= link_to place.title, place %>
+  </div>
+  <div class="clearfloat"></div>
+<% end %>
