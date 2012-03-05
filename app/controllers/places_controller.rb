@@ -1,5 +1,7 @@
 class PlacesController < ApplicationController
   include SocialStream::Controllers::Objects
+  
+  skip_authorize_resource :only => :new
 
   belongs_to_subjects :optional => true
 

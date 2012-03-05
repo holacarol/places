@@ -45,5 +45,66 @@ describe PlacesController do
         response.should redirect_to(new_user_session_path)
       end  
     end
+
+    describe "for signed-in users" do
+
+      before(:each) do
+        @user = Factory(:user)
+	sign_in(@user)
+      end
+
+      describe "failure" do
+
+        before(:each) do
+          @attr = {
+		:title => "",
+		:position => "",
+		:url => "",
+		:author_id => @user.id ,
+		:owner_id => @user.id,
+		:user_author_id => @user.id }
+        end
+
+        it "should not create a place" do
+	  lambda do
+	    post :create, :place => @attr
+          end.should_not change(Place, :count)
+	end
+
+#        it "should render the home page" do
+#	  post :create, :place => @attr
+#	  response.should render_template('pages/home')
+#	 end
+      end
+
+      describe "success" do
+
+        before(:each) do
+          @attr = {
+		:title => "Test place",
+		:position => "+48.8577+002.295",
+		:url => "http://www.testplace.com",
+		:author_id => @user.id ,
+		:owner_id => @user.id,
+		:user_author_id => @user.id }
+	end
+
+        it "should create a place" do
+	  lambda do
+	    post :create, :place => @attr
+          end.should change(Place, :count).by(1)
+        end
+
+#        it "should redirect to the home page" do
+#	  post :create, :place => @attr
+#          response.should redirect_to(root_path)
+#	end
+
+#        it "should have a flash message" do
+#	  post :create, :place => @attr
+#	  flash[:success].should =~ /place created/i
+#	end
+      end
+    end
   end
 end
