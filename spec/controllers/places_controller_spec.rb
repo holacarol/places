@@ -36,4 +36,14 @@ describe PlacesController do
       end
     end
   end
+
+  describe "POST 'create'" do
+
+    describe "access control" do
+      it "should deny access to 'create'" do
+        post :create
+        response.should redirect_to(new_user_session_path)
+      end  
+    end
+  end
 end
