@@ -1,0 +1,45 @@
+<%= form_for @place do |f| %>
+  <% @place.owner_id = current_subject.try(:actor_id) %>
+  <% @place._relation_ids = Relation::Public.instance.id %>
+  
+  <% if f.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="place_card">
+    <div class="place_card_frame">
+      <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
+      <%= f.text_field :title, :size => 14, :class => "place_name" %>
+      <div class="place_description">
+        <div>Position: <%= f.text_field :position, :size => 20 %></div>
+        <div>URL: <%= f.text_field :url, :size => 20 %></div>
+      </div>
+    </div>
+  </div>
+
+
+  <%= f.hidden_field :owner_id %>
+  <%= f.hidden_field :_relation_ids %>
+
+  <div class="place_options">
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+
+<% end %>
+
+
+<%= javascript_tag do %>
+  $(".place_name").Watermark("<%= escape_javascript(I18n.t('place.name_title')) %>");
+<% end %>
+
+

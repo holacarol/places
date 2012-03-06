@@ -21,6 +21,7 @@ en:
         title: "Title"
     mine: "My places"
     name: "place"
+    name_title: "Place name"
     not_mine: "Places"
     one: "a place"
     simple_all: "All"

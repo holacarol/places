@@ -5,8 +5,5 @@ class Place < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :position, :presence => true
-  validates :author_id, :presence => true
-  validates :owner_id, :presence => true
-  validates :user_author_id, :presence => true
 
 end

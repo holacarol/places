@@ -23,10 +23,6 @@
   width: 550px;
 }
 
-#place_comments .activity, #place_comments .subactivity {
-  background: transparent;
-  border: none;
-}
 #place_comments .activity_new_comment {
   display:block;
 }
@@ -52,7 +48,7 @@
 }
 
 .place_name {
-  padding-top: 10px;
+  margin-top: 10px;
   font-size: 20px;
   font-weight: bold;
 }

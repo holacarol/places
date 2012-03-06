@@ -1,5 +1,5 @@
 Places::Application.routes.draw do
-  match '/places', :to => 'pages#home'
+#  match '/places', :to => 'pages#home'
   match '/places/contact', :to => 'pages#contact'
   match '/places/about', :to => 'pages#about'
 
