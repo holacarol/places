@@ -1,4 +1,11 @@
-<% toolbar %><% sidebar %>
+<%= render :partial => 'objects/show',
+           :locals => { :object => @place } %>
+
+<% content_for :title do %>
+  <%= t('site.name')  + ": " + t('place.title') %>
+<% end %>
+
+<% sidebar %>
 
 <div class="place_card">
   <div class="place_card_frame">

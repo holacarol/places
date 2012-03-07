@@ -1,5 +1,18 @@
-<% toolbar %><% sidebar %>
-<h1>All places</h1>
+<%= javascript_tag do %>
+  $(function() {
+    SocialStream.Objects.init();
+  });
+<% end %>
+
+<% content_for :title do %>
+<%= profile_subject.name + ": " + t('place.title') %>
+<% end %>
+
+<% sidebar %>
+
+<% toolbar :profile => profile_subject %>
+
+<h1><%= profile_subject.name %>'s places</h1>
 <% unless @activities.empty? %>
   <% @activities.each do |a| %>
     <% place = a.activity_objects.first.place %>
