@@ -13,6 +13,11 @@
 <% toolbar :profile => profile_subject %>
 
 <h1><%= profile_subject.name %>'s places</h1>
+
+<% if profile_subject_is_current? %>
+  <div class ="place_list_add"><%= link_to "+ Add new place", new_place_path %></div> 
+<% end %>
+
 <% unless @activities.empty? %>
   <% @activities.each do |a| %>
     <% place = a.activity_objects.first.place %>
@@ -21,10 +26,12 @@
       <div class="activity_content">
         <div class="place_list_item">
           <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
-          <div class="place_name"><%= link_to place.title, place %></div>
-          <div class="place_list_options">
-            <div class="verb_comment"><%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
-            <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"> · <%= link_like(place.post_activity)%></div>
+          <div class="place_list_content">
+            <div class="place_list_name"><%= link_to place.title, place %></div>
+            <div class="place_list_options">
+              <div class="verb_comment"><%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
+              <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"> · <%= link_like(place.post_activity)%></div>
+            </div>
           </div>
         </div>
         <div class="place_list_comments">

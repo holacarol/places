@@ -64,6 +64,13 @@ describe Place do
 	:owner_id => @tie.sender.id, :user_author_id => " " }
       Place.new(@wrong_place).should_not be_valid
     end
+
+    it "should reject long title" do
+       @wrong_place = {:title => "a"*51, :position => "+48.8577+002.295",
+	:url => "http://www.testplace.com", :author_id => @tie.receiver.id,
+	:owner_id => @tie.sender.id, :user_author_id => " " }
+      Place.new(@wrong_place).should_not be_valid
+    end
   end
 
 end

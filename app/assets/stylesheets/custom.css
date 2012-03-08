@@ -45,11 +45,12 @@
 
 .place_icon {
   float: right;
+  margin: 0 0 10px 10px;
 }
 
 .place_name {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -76,15 +77,26 @@
 
 .place_list_icon {
   float: left;
-  margin-right: 10px;
 }
 
 .place_list_options {
-  position: absolute;
-  left: 300px;
-  top: 25px;
 }
 
 .place_list_comments {
   margin: 0 0 10px 25px;
+}
+
+.place_list_name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.place_list_content {
+  margin-left: 52px;
+}
+
+.place_list_add {
+  text-align: center;
+  margin: 10px 10px 0;
+  width: 490px;
 }

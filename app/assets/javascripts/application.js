@@ -11,5 +11,4 @@
 //= require social_stream-events
 //= require social_stream-linkser
 //= require social_stream-presence
-//= require jquery-textFill-0.1
 //= require_tree .

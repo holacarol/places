@@ -9,7 +9,7 @@ describe PlacesController do
 
   describe "GET 'index'" do
 
-    describe "for non-signer-in users" do
+    describe "for non-signed-in users" do
       it "should deny access" do
         get :index
 	response.should redirect_to(new_user_session_path)
@@ -50,7 +50,7 @@ describe PlacesController do
 
       before(:each) do
         @user = Factory(:user)
-	sign_in(@user)
+	sign_in @user
       end
 
       describe "failure" do
