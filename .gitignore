@@ -14,6 +14,9 @@
 /log/*.log
 /tmp
 
+# Ignore webrat.log
+webrat.log
+
 # Ignore all files from social network usage
 /public/images/tmp/*
 /documents
