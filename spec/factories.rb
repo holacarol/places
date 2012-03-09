@@ -7,7 +7,6 @@
 #end
 
 Factory.define :address do |a|
-  a.formatted		"12, Test St., 12345 Testcity, Testregion, Testland"
   a.streetAddress	"12, Test St."
   a.locality		"Testcity"
   a.region		"Testregion"
@@ -18,7 +17,7 @@ end
 Factory.define :place do |p|
   p.sequence(:title)	{ |n| "Test place #{ n }" }
   p.position		"+48.8577+002.295"
-#  p.association		:address
+  p.association		:address
   p.url			"http://www.testplace.com"
   p.author_id 		{ Factory(:friend).receiver.id }
   p.owner_id 		{ |q| q.author_id }
