@@ -13,7 +13,10 @@ class Place < ActiveRecord::Base
   # Other solution to consider: Find the existing place in the controller or not use the nested_attributes
 
   # If you need to validate the associated record, you can add a method like this:
-  #def validate_associated_records_for_address
+  def validate_associated_records_for_address
+    if address.streetAddress.blank?
+      errors.add(:streetAddress, "can't be empty")
+    end
   #  if place.googleid.blank?
   #    errors.add(:googleid, "can't be empty")
   #  end
@@ -23,7 +26,7 @@ class Place < ActiveRecord::Base
   #  if place.name.blank?
   #    errors.add(:name, "can't be empty")
   #  end
-  #end
+  end
     
 
   def autosave_associated_records_for_address

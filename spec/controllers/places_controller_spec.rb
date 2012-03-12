@@ -56,9 +56,16 @@ describe PlacesController do
       describe "failure" do
 
         before(:each) do
+          @address_attr = {
+		:streetAddress => "1, Test St.",
+		:locality => "Testcity",
+		:region => "Testregion",
+		:postalCode => "12345",
+		:country => "Testland" }
           @attr = {
 		:title => "",
 		:position => "",
+		:address_attributes => @address_attr,
 		:url => "",
 		:author_id => @user.id ,
 		:owner_id => @user.id,
@@ -80,9 +87,16 @@ describe PlacesController do
       describe "success" do
 
         before(:each) do
+	@address_attr = {
+		:streetAddress => "1, Test St.",
+		:locality => "Testcity",
+		:region => "Testregion",
+		:postalCode => "12345",
+		:country => "Testland" }
           @attr = {
 		:title => "Test place",
 		:position => "+48.8577+002.295",
+		:address_attributes => @address_attr,
 		:url => "http://www.testplace.com",
 		:author_id => @user.id ,
 		:owner_id => @user.id,

@@ -29,7 +29,7 @@ gem 'therubyracer'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '~> 2.4.1.beta'
-  gem 'faker', '0.3.1'
+  gem 'faker'
   gem 'forgery', '0.5.0'
 end
 

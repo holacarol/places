@@ -12,7 +12,7 @@
     <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
     <div class="place_name"><%= @place.title %></div>
     <div class="place_description">
-      <div>Position: <%= @place.position %></div>
+      <div style="float:left;">Address: </div><div style="margin-left:50px;"><%= simple_format(@place.address.formatted) %></div>
       <div>URL: <%= @place.url %></div>
     </div>
   </div>

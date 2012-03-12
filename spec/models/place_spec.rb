@@ -28,7 +28,7 @@ describe Place do
   describe "address associations" do
  
     before(:each) do
-      @place = Place.create(@place_attr)
+      @place = Place.create(@attr)
     end
 
     it "should have an address attribute" do
