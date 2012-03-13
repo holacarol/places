@@ -55,13 +55,47 @@
 }
 
 .place_description {
+  font-size: 12px;
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
+  left: 20px;
 }
 
 .place_options {
   padding-top: 5px;
   text-align:center
+}
+
+.more_info {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.revert_info {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.place_card_front {
+  display: none;
+}
+
+.place_card_back {
+  display: none;
+}
+
+.place_card_addresstag {
+  float: left;
+}
+
+.place_card_address {
+  margin-left: 50px;
+}
+
+.place_card_info {
+ margin-bottom: 5px;
 }
 
 /* Place item */

@@ -1,0 +1,22 @@
+<%= form.fields_for :address do |f| %>
+ <div class="field">
+    <%= f.label :streetAddress %>
+    <%= f.text_field :streetAddress, :size => 20 %>
+ </div>
+ <div class="field">
+    <%= f.label :locality %>
+    <%= f.text_field :locality, :size => 20 %>
+ </div>
+ <div class="field">
+    <%= f.label :region %>
+    <%= f.text_field :region, :size => 20%>
+ </div>
+ <div class="field">
+    <%= f.label :postalCode %>
+    <%= f.text_field :postalCode, :size => 20 %>
+ </div>
+ <div class="field">
+    <%= f.label :country %>
+    <%= f.text_field :country, :size => 20 %>
+ </div>
+<% end %>

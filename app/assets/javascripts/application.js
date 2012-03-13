@@ -11,4 +11,5 @@
 //= require social_stream-events
 //= require social_stream-linkser
 //= require social_stream-presence
+//= require jquery.flip
 //= require_tree .

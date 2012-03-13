@@ -1,3 +1,4 @@
+<% @place.build_address %>
 <%= form_for @place do |f| %>
   <% @place.owner_id = current_subject.try(:actor_id) %>
   <% @place._relation_ids = Relation::Public.instance.id %>
@@ -14,6 +15,7 @@
     </div>
   <% end %>
 
+  
   <div class="place_card">
     <div class="place_card_frame">
       <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
@@ -24,6 +26,14 @@
       </div>
     </div>
   </div>
+
+  <div class="place_card">
+    <div class="place_card_frame">
+      <%= render :partial => 'shared/address_form',
+	:locals => {:form => f} %>
+    </div>
+  </div>
+
 
 
   <%= f.hidden_field :owner_id %>
@@ -39,7 +49,7 @@
 
 
 <%= javascript_tag do %>
-  $(".place_name").Watermark("<%= escape_javascript(I18n.t('place.name_title')) %>");
+  $(".place_name").watermark("<%= escape_javascript(I18n.t('place.name_title')) %>");
 <% end %>
 
 
