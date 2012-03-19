@@ -27,3 +27,6 @@ webrat.log
 .project
 .DS_Store
 
+# Ignore database.yml
+/config/database.yml
+
