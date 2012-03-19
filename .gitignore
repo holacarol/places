@@ -23,3 +23,7 @@ webrat.log
 
 # Ignore other unneeded files.
 *.swp
+*~
+.project
+.DS_Store
+
