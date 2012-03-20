@@ -36,12 +36,20 @@ class Activity < ActiveRecord::Base
            :through => :activity_object_activities
 
   scope :wall, lambda { |args|
+
+    activities = Activity.arel_table
+    verbs = ActivityVerb.arel_table
+    objects = ActivityObject.arel_table
     q =
       select("DISTINCT activities.*").
       joins(:channel).
       joins(:audiences).
       joins(:relations).
-      roots
+      joins(:activity_verb).
+      joins(:activity_objects).
+        where(activities[:ancestry].eq(nil).
+	  or((verbs[:name].eq('like')).
+            and(objects[:object_type].eq('Place'))))
 
     if args[:object_type].present?
       q = q.joins(:activity_objects).
