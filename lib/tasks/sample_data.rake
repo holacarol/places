@@ -4,6 +4,7 @@ namespace :db do
     Rake::Task['db:reset'].invoke
     make_users
     make_friends
+    sleep(10)
     make_places
   end
 end
