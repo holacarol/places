@@ -46,14 +46,16 @@ class Activity < ActiveRecord::Base
       joins(:audiences).
       joins(:relations).
       joins(:activity_verb).
-      joins(:activity_objects).
-        where(activities[:ancestry].eq(nil).
+      joins('LEFT OUTER JOIN activity_object_activities ON activity_object_activities.activity_id = activities.id').
+      joins('LEFT OUTER JOIN activity_objects ON activity_objects.id = activity_object_activities.activity_object_id').
+        where((activities[:ancestry].eq(nil).
+	  and((objects[:object_type].eq('Place').not).
+            or(objects[:object_type].eq(nil)))).
 	  or((verbs[:name].eq('like')).
             and(objects[:object_type].eq('Place'))))
 
     if args[:object_type].present?
-      q = q.joins(:activity_objects).
-            where('activity_objects.object_type' => args[:object_type])
+      q = q.where('activity_objects.object_type' => args[:object_type])
     end
 
     channels   = Channel.arel_table
