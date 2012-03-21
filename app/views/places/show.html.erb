@@ -1,5 +1,10 @@
-<%= render :partial => 'objects/show',
-           :locals => { :object => @place } %>
+<% toolbar :profile, :subject => profile_subject %>
+
+<%= javascript_tag do %>
+  $(function() {
+    SocialStream.Objects.init();
+  });
+<% end %>
 
 <% content_for :title do %>
   <%= t('site.name')  + ": " + t('place.title') %>
