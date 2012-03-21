@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/application'
 require 'rails/engine'
-require './lib/social_stream/toolbar_config/places'
+require './lib/social_stream/views/toolbar/places'
 
 
 module Rails
@@ -41,9 +41,9 @@ end
 module Places
   class Application < Rails::Application
     
-    initializer "social_stream/toolbar_config/places" do
-      SocialStream::ToolbarConfig.module_eval do
-        include SocialStream::ToolbarConfig::Places
+    initializer "social_stream/views/toolbar/places" do
+      SocialStream::Views::Toolbar.module_eval do
+        include SocialStream::Views::Toolbar::Places
       end
     end
 
