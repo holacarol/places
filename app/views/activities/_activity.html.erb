@@ -1,0 +1,7 @@
+<% if activity.is_root? %>
+  <%= render :partial => "activities/root", :locals => { :activity => activity } %>
+<% elsif activity.verb.eql?('like') && activity.direct_object.is_a?(Place) %>
+  <%= render :partial => "activities/like", :locals => { :activity => activity } %>
+<% else %>
+  <%= render :partial => "activities/child", :locals => { :activity => activity } %>
+<% end %>

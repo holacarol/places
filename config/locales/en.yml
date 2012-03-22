@@ -26,6 +26,11 @@ en:
     one: "a place"
     simple_all: "All"
     title: "Places"
+  activity:
+    verb:
+      like:
+        Place:
+          title: "%{subject} likes %{activity_object}."
 #  repository:
 #    order:
 #      by: "Order by"
