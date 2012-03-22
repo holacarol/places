@@ -65,7 +65,8 @@ class Activity < ActiveRecord::Base
     owner_conditions =
       channels[:author_id].eq(Actor.normalize_id(args[:owner])).
         or(channels[:user_author_id].eq(Actor.normalize_id(args[:owner]))).
-        or(channels[:owner_id].eq(Actor.normalize_id(args[:owner])))
+        or((channels[:owner_id].eq(Actor.normalize_id(args[:owner]))).
+          and(objects[:object_type].eq('Place').not))
 
     audience_conditions =
       audiences[:relation_id].in(args[:relation_ids]).
