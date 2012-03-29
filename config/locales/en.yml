@@ -31,6 +31,20 @@ en:
       like:
         Place:
           title: "%{subject} likes %{activity_object}."
+    like_construction:
+      like_friends:
+        one: "%{friends} contact"
+        other: "%{friends} contacts"
+      like_and: " and "
+      like_people:
+        one: "%{people} person"
+        other: "%{people} people"
+      like_others:
+        one: "%{people} other"
+        other: "%{people} others"
+      like_final:
+        one: " likes this"
+        other: " like this"
 #  repository:
 #    order:
 #      by: "Order by"

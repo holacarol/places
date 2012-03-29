@@ -8,7 +8,7 @@
         <%= link_to truncate_name(place.title), place %>
       </div>
       <div class="brief">
-        <%= t 'activity.like_sentence', :likers => place.like_count, :count => place.like_count %>
+        <%= like_place_sentence(activity) %>
       </div>
     </div>
   </div>

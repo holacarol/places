@@ -15,9 +15,11 @@
     </div>
 
     <div class="activity_objects">
-      <%= render activity.activity_objects %>
+      <%= render :partial => 'places/place',
+                 :locals => { :activity => activity,
+                              :place => activity.direct_object } %>
     </div>
-
+    
     <%= render :partial => 'activities/likes',
                :locals => { :activity => activity } %>
 
