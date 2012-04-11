@@ -10,6 +10,9 @@
       <div class="brief">
         <%= like_place_sentence(activity) %>
       </div>
+      <div class="place_like_link">
+        <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"><%= place_link_like(place.post_activity)%></div>
+      </div>
     </div>
   </div>
 </div>
