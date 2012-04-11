@@ -49,9 +49,9 @@ class Activity < ActiveRecord::Base
       joins('LEFT OUTER JOIN activity_object_activities ON activity_object_activities.activity_id = activities.id').
       joins('LEFT OUTER JOIN activity_objects ON activity_objects.id = activity_object_activities.activity_object_id').
         where((activities[:ancestry].eq(nil).
-    and((objects[:object_type].eq('Place').not).
+	  and((objects[:object_type].eq('Place').not).
             or(objects[:object_type].eq(nil)))).
-    or((verbs[:name].eq('like')).
+	  or((verbs[:name].eq('like')).
             and(objects[:object_type].eq('Place'))))
 
     if args[:object_type].present?
@@ -342,17 +342,13 @@ class Activity < ActiveRecord::Base
   def fill_relations
     return if relation_ids.present?
 
+    # FIXME: repeated in SocialStream::Models::Object#_relation_ids
     self.relation_ids =
-    # FIXME: repeated in ActivityObject#_relation_ids
-    if SocialStream.relation_model == :custom
       if channel.reflexive?
         receiver.relation_customs.map(&:id)
       else
         receiver.relation_customs.allow(channel.author, 'create', 'activity').map(&:id)
       end
-    else
-      Array.wrap Relation::Public.instance.id
-    end
   end
 
   #
