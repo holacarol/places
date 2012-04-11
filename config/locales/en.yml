@@ -31,6 +31,8 @@ en:
       like:
         Place:
           title: "%{subject} likes %{activity_object}."
+          like: "I like too"
+          unlike: "I do not like anymore"
     like_construction:
       like_friends:
         one: "%{friends} contact"
@@ -45,6 +47,7 @@ en:
       like_final:
         one: " likes this"
         other: " like this"
+
 #  repository:
 #    order:
 #      by: "Order by"

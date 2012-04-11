@@ -42,4 +42,28 @@ module PlacelikesHelper
 		friend_likes.count
 	end
 
+	def place_link_like(object)
+	    params = place_link_like_params(object)
+   		link_to params[0],params[1],params[2]
+  	end
+
+  	def place_link_like_params(object)
+	    params = Array.new
+	    if !user_signed_in?
+	      params << image_tag("btn/nolike.png", :class => "menu_icon")+t('activity.verb.like.Place.like')
+	      params << new_user_session_path
+	      params << {:class => "verb_like",:id => "like_" + dom_id(object)}
+	    else
+	      if (object.liked_by?(current_subject))
+	        params << image_tag("btn/like.png", :class => "menu_icon")+t('activity.verb.like.Place.unlike')
+	        params << [object, :like]
+	        params << {:class => "verb_like",:id => "like_" + dom_id(object),:method => :delete, :remote => true}
+	      else
+	        params << image_tag("btn/nolike.png", :class => "menu_icon")+t('activity.verb.like.Place.like')
+	        params << [object, :like]
+	        params << {:class => "verb_like",:id => "like_" + dom_id(object),:method => :post, :remote => true}
+	      end
+	    end
+	end
+
 end
