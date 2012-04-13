@@ -13,12 +13,12 @@ class Place < ActiveRecord::Base
   # Sphinx search
   define_index do
     # fields
-    indexes activity_object.title, :as => name, :sortable => true
+    indexes activity_object.title, :as => :title, :sortable => true
     indexes address.locality
     indexes address.region
     indexes address.country
     # attributes
-    has activity_object.like_count, :as => like_count
+    has activity_object.like_count, :as => :like_count
   end
 
   # Solution to the problem: If place already exists, get the associated id.

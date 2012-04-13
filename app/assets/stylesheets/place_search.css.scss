@@ -1,0 +1,100 @@
+@import "colors";
+
+/******************** Search css ***********************/
+/********************************* place **************/
+#place_search {
+  float: left;
+  padding: 1px 0 0 2px;
+  z-index: 2001;
+}
+#place_search_input, #global_search_input {
+  padding: 0 3px 0 22px;
+  background: url('btn/search_icon.png') 5px 50% no-repeat white;
+  font-size: 11px;
+  color: $main-color;
+}
+#place_search_input {
+  border: solid 1px $input-border-color;
+  height: 16px;
+  width: 200px;
+}
+.banner_busqueda #place_search_input {
+  height: 20px;
+}
+#global_search_input {
+  border: solid 1px $input-border-color;
+  height: 25px;
+  width: 300px;
+}
+#place_search_display {
+  width: 225px;
+  display: none;
+  float: right;
+  margin-right: 35px;
+  border: solid 1px $auxiliar-color;
+  border-top: none;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2000;
+  background: $fill-color;
+  text-align: left;
+}
+#place_search_display a {
+  color: $main-color;
+  text-decoration: none;
+}
+#place_search_display a:hover {
+  color: $main-color;
+  text-decoration: none;
+  font-weight: bold;
+}
+#place_search_display li {
+  padding: 4px;
+  border-top: solid 1px $auxiliar-color;
+  font-size: 10px;
+  height: 35px;
+  background: $fill-color;
+  overflow: hidden;
+  text-align: center;
+}
+#place_search_display li:hover {
+  background: $secondary-color;
+  color: $main-color;
+}
+#place_search_display li .logo {
+  float: left;
+  height: 35px;
+  width: 35px;
+  margin-right: 5px;
+}
+#place_search_display li .logo img {
+  height: 100%;
+  width: 100%;
+}
+#place_search_display li .name {
+  margin-top: 3px;
+  width: 175px;
+  overflow: hidden;
+}
+#place_search_display li .link {
+  display: none;
+}
+#place_search_display li.result {
+  padding: 0px;
+  height: 45px;
+  text-align: left;
+}
+#place_search_display li.loading, #place_search_display li.more, #place_search_display li.none {
+  text-align: center;
+}
+#place_search_display li.more {
+  padding-top: 10px;
+  height: 30px;
+}
+#place_search_display li.title:hover, #place_search_display li.more:hover, #place_search_display li.none:hover {
+}
+#place_search_display .warning {
+  width: 100%;
+}
+
+/******************** Search css END ***********************/

@@ -15,7 +15,8 @@
 <h1><%= profile_subject.name %>'s places</h1>
 
 <% if profile_subject_is_current? %>
-  <div class ="place_list_add"><%= link_to "+ Add new place", new_place_path %></div> 
+  <div class ="place_list_add"><%= link_to "+ Add new place", new_place_path %></div>
+  <%= render :partial => 'places/search' %>
 <% end %>
 
 <% unless @activities.empty? %>

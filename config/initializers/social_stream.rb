@@ -26,6 +26,8 @@ SocialStream.setup do |config|
   # 
   # config.quick_search_models = [:user, :group]
   # config.extended_search_models = [:user, :group]
+  config.quick_search_models += [:place]
+  config.extended_search_models += [:place]
 
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
