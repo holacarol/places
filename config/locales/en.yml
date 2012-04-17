@@ -26,6 +26,13 @@ en:
     one: "a place"
     simple_all: "All"
     title: "Places"
+    like:
+      me: "I like"
+      other: "%{contact} likes"
+    search:
+      name: "Search for your fav places"
+      no_match: "Don't find your fav place?"
+      new: "+ Add new place"
   activity:
     verb:
       like:

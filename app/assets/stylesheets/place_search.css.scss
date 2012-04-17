@@ -3,7 +3,7 @@
 /******************** Search css ***********************/
 /********************************* place **************/
 #place_search {
-  float: left;
+  //float: left;
   padding: 1px 0 0 2px;
   z-index: 2001;
 }
@@ -15,7 +15,7 @@
 }
 #place_search_input {
   border: solid 1px $input-border-color;
-  height: 16px;
+  height: 25px;
   width: 200px;
 }
 .banner_busqueda #place_search_input {

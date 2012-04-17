@@ -15,7 +15,7 @@ class SearchController < ApplicationController
         return
       elsif params[:mode].eql? "place_search"
         @search_result = search :place
-        render :partial => "header_search"
+        render :partial => "places/search_list"
         return        
       else
         if params[:focus].present?

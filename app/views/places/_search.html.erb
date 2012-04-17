@@ -28,7 +28,7 @@ $(document).ready(function() {
    $("#place_search_display").hide();
   });
   
-  $("#place_search_input").watermark("<%= escape_javascript(I18n.t('search.name')) %>");
+  $("#place_search_input").watermark("<%= escape_javascript(I18n.t('place.search.name')) %>");
 
   $("#place_search_input").keyup(function() {
     var searchstring = $(this).val();

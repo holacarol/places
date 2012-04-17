@@ -12,11 +12,22 @@
 
 <% toolbar :profile, :subject => profile_subject %>
 
-<h1><%= profile_subject.name %>'s places</h1>
+<%if profile_subject_is_current?%>
+<%= location(
+  link_to(t('place.title') + ' ' + t('place.like.me'), polymorphic_path(controller.controller_name),:remote => true)
+  ) %>
+<%else%>
+<%= location(
+  link_to(profile_subject.name, polymorphic_path(profile_subject),:remote => true),
+  link_to(t('place.title') + ' ' + t('place.like.other', :contact => profile_subject.name), polymorphic_path([profile_subject, controller.controller_name]),:remote => true)
+  ) %>
+<%end%>
+
+<br class="clearfloat" />
+<div class="space_center"></div>
 
 <% if profile_subject_is_current? %>
-  <div class ="place_list_add"><%= link_to "+ Add new place", new_place_path %></div>
-  <%= render :partial => 'places/search' %>
+  <div class ="place_list_add"><%= render :partial => 'places/search' %></div>
 <% end %>
 
 <% unless @activities.empty? %>
