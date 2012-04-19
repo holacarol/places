@@ -51,11 +51,12 @@
 #place_search_display li {
   padding: 4px;
   border-top: solid 1px $auxiliar-color;
-  font-size: 10px;
+  font-size: 12px;
   height: 35px;
   background: $fill-color;
   overflow: hidden;
   text-align: center;
+  list-style-type: none;
 }
 #place_search_display li:hover {
   background: $secondary-color;

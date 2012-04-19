@@ -43,6 +43,8 @@
   padding: 10px;
   height: 130px;
   border: 2px solid gray;
+  border-radius: 6px;
+  box-shadow: 4px 4px 3px #AAAAAA;
   margin: auto;
   position: relative;
 }
@@ -66,7 +68,7 @@
 }
 
 .place_options {
-  padding-top: 5px;
+  padding-top: 7px;
   text-align:center
 }
 
@@ -105,7 +107,9 @@
 /* Place item */
 .place_list_item {
   margin: 10px 10px 0 10px;
-  border: 2px solid gray;
+  //border: 2px solid gray;
+  border-radius: 8px;
+  box-shadow: 0 4px 7px #AAAAAA;
   padding: 10px;
   text-align: left;
   width: 465px;

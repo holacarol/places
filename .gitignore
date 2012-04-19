@@ -19,6 +19,7 @@ webrat.log
 
 # Ignore all files from social network usage
 /public/images/tmp/*
+/public/system
 /documents
 
 # Ignore other unneeded files.
