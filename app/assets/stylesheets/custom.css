@@ -14,9 +14,8 @@
 }
 
 #place_comments {
-  margin-top: 20px;
+  margin: 20px;
   padding-top: 10px;
-  border-top: thin solid $separation-color;
 }
 
 #place_comments .new_comment.new_comment_shown {

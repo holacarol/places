@@ -159,6 +159,22 @@ class Activity < ActiveRecord::Base
     children.includes(:activity_objects).where('activity_objects.object_type' => "Comment")
   end
 
+  # The contact's comments about this activity
+  def contacts_comments(subject)
+    contacts = Contact.arel_table
+    channels = Channel.arel_table
+
+    children.includes(:activity_objects).where('activity_objects.object_type' => "Comment").joins(:channel).
+      joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
+      where((contacts[:sender_id].eq(Actor.normalize_id(subject)).and(contacts[:ties_count].eq(1))).
+        or(channels[:author_id].eq(Actor.normalize_id(subject)))).order("activities.created_at asc")
+  end
+
+    # The others' comments about this activity
+  def others_comments(subject)
+    comments - contacts_comments(subject)
+  end
+
   # The 'like' qualifications emmited to this activities
   def likes
     children.joins(:activity_verb).where('activity_verbs.name' => "like")
