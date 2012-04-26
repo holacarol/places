@@ -8,10 +8,10 @@
         <%= link_to truncate_name(place.title), place %>
       </div>
       <div class="brief">
-        <%= like_place_sentence(activity) %>
+        <%= like_place_sentence(place) %>
       </div>
-      <div class="place_like_link">
-        <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"><%= place_link_like(place.post_activity)%></div>
+      <div class="place_like_link" id="like_<%= dom_id(place.post_activity) %>">
+        <%= place_link_like(place.post_activity)%>
       </div>
     </div>
   </div>

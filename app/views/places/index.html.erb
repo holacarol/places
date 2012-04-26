@@ -38,21 +38,21 @@
       <div class="activity_content">
         <div class="place_list_item">
           <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
+          <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
+            <%= place_star(place.post_activity) %>
+          </div>
           <div class="place_list_content">
             <div class="place_list_name"><%= link_to place.title, place %></div>
+            <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
             <div class="place_list_options">
-              <div class="verb_comment"><%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
-              <div class="verb_like" id="like_<%= dom_id(place.post_activity) %>"> · <%= link_like(place.post_activity)%></div>
+              <%= like_place_sentence(place) %>
             </div>
           </div>
-        </div>
-        <div class="place_list_comments">
-          <%= render :partial => 'activities/comments',
-                     :locals => { :activity => a } %>
-          <%= render :partial => 'comments/new',
-                     :locals => { :activity => a } %>
         </div>
       </div>
     <% end %>
   <% end %>
 <% end %>
+
+<br class="clearfloat" />
+<div class="space_center"></div>

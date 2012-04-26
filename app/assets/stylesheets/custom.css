@@ -118,10 +118,13 @@
 }
 
 .place_list_icon {
-  float: left;
+  position: absolute;
+  top: 50%;
+  margin-top: -22px;
 }
 
 .place_list_options {
+  color: gray;
 }
 
 .place_list_comments {
@@ -142,3 +145,25 @@
   margin: 0 10px 10px 10px;
   width: 490px;
 }
+
+.place_list_star {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+}
+
+.place_star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -18px;
+  height: 22px;
+  width: 22px;
+}
+.place_list_city {
+  color: #1F4A75;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+
