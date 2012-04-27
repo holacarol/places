@@ -1,3 +1,25 @@
+
+<div class="place_card_see"><div class="place_card_see_text"><%= link_to t("place.comments.contacts"), "#", :id => "see_link" %></div></div>
 <div class="activity_comments" id="comments_<%= dom_id(activity) %>">
-  <%= render activity.contacts_comments(current_subject) %>
+	<% allComments = activity.comments %>
+	<% allComments.each do |comment| %>
+		<% if comment.from_contact?(current_subject) %>
+			<div class="contact_comment"><%= render comment %></div>
+		<% else %>
+			<div class="other_comment"><%= render comment %></div>
+		<% end %>
+	<% end %>
+
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".place_card_see_text").click(function(){
+		var text = $("#see_link").text();
+		$("#see_link").text(
+			text == "<%= t("place.comments.contacts") %>" ? "<%= t("place.comments.all") %>" : "<%= t("place.comments.contacts") %>");
+		$(".other_comment").toggle("blind");
+		return false;
+	})
+})
+</script>

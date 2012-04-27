@@ -159,6 +159,12 @@ class Activity < ActiveRecord::Base
     children.includes(:activity_objects).where('activity_objects.object_type' => "Comment")
   end
 
+  # Is this activity from one of the subject's contacts?
+  def from_contact?(subject)
+    in?(parent.contacts_comments(subject))
+  end
+
+
   # The contact's comments about this activity
   def contacts_comments(subject)
     contacts = Contact.arel_table

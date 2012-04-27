@@ -19,11 +19,11 @@
 }
 
 #place_comments .new_comment.new_comment_shown {
-  width: 500px;
+  width: 460px;
 }
 
 #place_comments .new_comment {
-  width: 550px;
+  width: 512px;
 }
 
 #place_comments .activity_new_comment {
@@ -101,6 +101,14 @@
 
 .place_card_info {
  margin-bottom: 5px;
+}
+
+.place_card_see {
+  text-align: right;
+}
+
+.place_card_see_text {
+  display: inline-block;
 }
 
 /* Place item */

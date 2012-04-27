@@ -33,6 +33,9 @@ en:
       name: "Search for your fav places"
       no_match: "Don't find your fav place?"
       new: "+ Add new place"
+    comments:
+      contacts: "See only my contacts's comments"
+      all: "See all comments"
   activity:
     verb:
       like:
