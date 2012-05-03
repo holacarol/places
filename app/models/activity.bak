@@ -49,9 +49,9 @@ class Activity < ActiveRecord::Base
       joins('LEFT OUTER JOIN activity_object_activities ON activity_object_activities.activity_id = activities.id').
       joins('LEFT OUTER JOIN activity_objects ON activity_objects.id = activity_object_activities.activity_object_id').
         where((activities[:ancestry].eq(nil).
-	  and((objects[:object_type].eq('Place').not).
+    and((objects[:object_type].eq('Place').not).
             or(objects[:object_type].eq(nil)))).
-	  or((verbs[:name].eq('like')).
+    or((verbs[:name].eq('like')).
             and(objects[:object_type].eq('Place'))))
 
     if args[:object_type].present?
@@ -157,6 +157,28 @@ class Activity < ActiveRecord::Base
   # The comments about this activity
   def comments
     children.includes(:activity_objects).where('activity_objects.object_type' => "Comment")
+  end
+
+  # Is this activity from one of the subject's contacts?
+  def from_contact?(subject)
+    in?(parent.contacts_comments(subject))
+  end
+
+
+  # The contact's comments about this activity
+  def contacts_comments(subject)
+    contacts = Contact.arel_table
+    channels = Channel.arel_table
+
+    children.includes(:activity_objects).where('activity_objects.object_type' => "Comment").joins(:channel).
+      joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
+      where((contacts[:sender_id].eq(Actor.normalize_id(subject)).and(contacts[:ties_count].eq(1))).
+        or(channels[:author_id].eq(Actor.normalize_id(subject)))).order("activities.created_at asc")
+  end
+
+    # The others' comments about this activity
+  def others_comments(subject)
+    comments - contacts_comments(subject)
   end
 
   # The 'like' qualifications emmited to this activities
@@ -342,13 +364,17 @@ class Activity < ActiveRecord::Base
   def fill_relations
     return if relation_ids.present?
 
-    # FIXME: repeated in SocialStream::Models::Object#_relation_ids
     self.relation_ids =
+    # FIXME: repeated in ActivityObject#relation_ids
+    if SocialStream.relation_model == :custom
       if channel.reflexive?
         receiver.relation_customs.map(&:id)
       else
         receiver.relation_customs.allow(channel.author, 'create', 'activity').map(&:id)
       end
+    else
+      Array.wrap Relation::Public.instance.id
+    end
   end
 
   #

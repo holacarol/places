@@ -76,7 +76,7 @@ end
 			:author_id		=> a.id,
 			:owner_id		=> a.id,
 			:user_author_id		=> a.id,
-			:_relation_ids		=> Array(Relation::Public.instance.id)
+			:relation_ids		=> Array(Relation::Public.instance.id)
       end
     end
 

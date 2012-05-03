@@ -22,5 +22,5 @@ Factory.define :place do |p|
   p.author_id 		{ Factory(:friend).receiver.id }
   p.owner_id 		{ |q| q.author_id }
   p.user_author_id 	{ |q| q.author_id }
-  p._relation_ids 	{ |q| Array(Relation::Public.instance.id) }
+  p.relation_ids 	{ |q| Array(Relation::Public.instance.id) }
 end

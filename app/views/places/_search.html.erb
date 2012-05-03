@@ -1,6 +1,6 @@
 <div id="place_search">
   <form action="<%=search_path%>" method="get" id="place_search_form">
-    <%= text_field_tag :search_query, nil,:autocomplete => :off, :id => :place_search_input %>
+    <%= text_field_tag :q, nil,:autocomplete => :off, :id => :place_search_input %>
     <%= hidden_field_tag :focus, 'place' %>
   </form>
   <div id="place_search_display">
@@ -45,7 +45,7 @@ $(document).ready(function() {
         $("#place_search_display").html("<ul><li class=\"loading\"><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></li></ul>").show();
         $.ajax({
           type : "GET",
-          url : "<%= search_url %>?search_query=" + searchstring + "&mode=place_search",
+          url : "<%= search_url %>?q=" + searchstring + "&mode=place_search",
           success : function(html) {
             if ($("#place_search_input").val()==searchstring){ //Only show if input value is still the same
               $("#place_search_display").html(html);

@@ -1,7 +1,7 @@
 <% @place.build_address %>
 <%= form_for @place do |f| %>
   <% @place.owner_id = current_subject.try(:actor_id) %>
-  <% @place._relation_ids = Relation::Public.instance.id %>
+  <% @place.relation_ids = Relation::Public.instance.id %>
   
   <% if f.object.errors.any? %>
     <div id="error_explanation">
@@ -37,7 +37,7 @@
 
 
   <%= f.hidden_field :owner_id %>
-  <%= f.hidden_field :_relation_ids %>
+  <%= f.hidden_field :relation_ids %>
 
   <div class="place_options">
     <div class="actions">

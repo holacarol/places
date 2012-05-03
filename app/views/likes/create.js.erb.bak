@@ -1,0 +1,3 @@
+$(".verb_like#like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(link_like(@like.object) ) %>");
+$(".place_list_star#like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(place_star(@like.object) ) %>");
+$(".place_like_link#like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(place_link_like(@like.object) ) %>");
