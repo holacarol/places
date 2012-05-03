@@ -1,5 +1,8 @@
 
-<div class="place_card_see"><div class="place_card_see_text"><%= link_to t("place.comments.contacts"), "#", :id => "see_link" %></div></div>
+<div class="place_card_see">
+	<div class="place_card_see_text"><%= link_to t("place.comments.contacts"), "#", :id => "see_link" %></div>
+</div>
+
 <div class="activity_comments" id="comments_<%= dom_id(activity) %>">
 	<% allComments = activity.comments %>
 	<% allComments.each do |comment| %>
@@ -9,7 +12,6 @@
 			<div class="other_comment"><%= render comment %></div>
 		<% end %>
 	<% end %>
-
 </div>
 
 <script type="text/javascript">
