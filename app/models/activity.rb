@@ -77,7 +77,8 @@ class Activity < ActiveRecord::Base
       when :home
         followed_conditions =
           channels[:author_id].in(args[:followed]).
-            or(channels[:owner_id].in(args[:followed]))
+            or((channels[:owner_id].in(args[:followed])).
+              and(objects[:object_type].eq('Place').not))
 
         owner_conditions.
           or(followed_conditions.and(audience_conditions))
