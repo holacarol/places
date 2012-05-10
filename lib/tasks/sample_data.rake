@@ -70,7 +70,8 @@ end
 		:postalCode	=> Faker::Address.zip_code,
 		:country	=> Faker::Address.country}
         Place.create 	:title 			=> Faker::Company.name,
-			:position 		=> "+#{n+48.8577}+#{n+2.295}",
+      :latitude     => latitude,
+			:longitude 		=> longitude,
 			:address_attributes 	=> address,
 			:url			=> Faker::Internet.domain_name,
 			:author_id		=> a.id,
@@ -84,4 +85,10 @@ end
     puts '	-> ' + (places_end - places_start).round(4).to_s + 's'
   end
 
+  def latitude
+    return ((rand * 180) - 90).to_s
+  end
 
+  def longitude
+    return ((rand * 360) - 180).to_s
+  end

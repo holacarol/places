@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503155108) do
+ActiveRecord::Schema.define(:version => 20120509171403) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -261,16 +261,17 @@ ActiveRecord::Schema.define(:version => 20120503155108) do
 
   create_table "places", :force => true do |t|
     t.integer  "activity_object_id"
-    t.string   "position"
     t.integer  "address_id"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "places", ["activity_object_id"], :name => "index_places_on_activity_object_id"
   add_index "places", ["address_id"], :name => "index_places_on_address_id"
-  add_index "places", ["position"], :name => "index_places_on_position"
+  add_index "places", ["latitude", "longitude"], :name => "index_places_on_latitude_and_longitude"
 
   create_table "posts", :force => true do |t|
     t.integer  "activity_object_id"

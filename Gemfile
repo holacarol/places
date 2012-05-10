@@ -42,6 +42,9 @@ end
 # Gem for social network
 gem 'social_stream'
 
+# Geocoding and maps
+gem 'geokit'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

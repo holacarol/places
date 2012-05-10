@@ -20,7 +20,8 @@ describe "Places" do
         lambda do
           visit new_place_path
           fill_in :place_title, :with => ""
-          fill_in :place_position, :with => place_attr[:position]
+          fill_in :place_latitude, :with => place_attr[:latitude]
+          fill_in :place_longitude, :with => place_attr[:longitude]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
@@ -32,17 +33,35 @@ describe "Places" do
         end.should_not change(Place, :count)
       end
 
-      it "should not make a new place without a position" do
+      it "should not make a new place without a latitude" do
         lambda do
           visit new_place_path
           fill_in :place_title, :with => place_attr[:title]
-          fill_in :place_position, :with => ""
+          fill_in :place_latitude, :with => ""
+          fill_in :place_longitude, :with => place_attr[:longitude]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
 	  fill_in :place_address_attributes_region	, :with => address_attr[:region]
 	  fill_in :place_address_attributes_postalCode	, :with => address_attr[:postalCode]
 	  fill_in :place_address_attributes_country	, :with => address_attr[:country]
+          click_button
+          response.should have_selector("div#error_explanation")
+        end.should_not change(Place, :count)
+      end
+
+      it "should not make a new place without a longitude" do
+        lambda do
+          visit new_place_path
+          fill_in :place_title, :with => place_attr[:title]
+          fill_in :place_latitude, :with => place_attr[:latitude]
+          fill_in :place_longitude, :with => ""
+          fill_in :place_url, :with => place_attr[:url]
+    fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
+    fill_in :place_address_attributes_locality  , :with => address_attr[:locality]
+    fill_in :place_address_attributes_region  , :with => address_attr[:region]
+    fill_in :place_address_attributes_postalCode  , :with => address_attr[:postalCode]
+    fill_in :place_address_attributes_country , :with => address_attr[:country]
           click_button
           response.should have_selector("div#error_explanation")
         end.should_not change(Place, :count)
@@ -52,7 +71,8 @@ describe "Places" do
         lambda do
           visit new_place_path
           fill_in :place_title, :with => place_attr[:title]
-          fill_in :place_position, :with => place_attr[:position]
+          fill_in :place_latitude, :with => place_attr[:latitude]
+          fill_in :place_longitude, :with => place_attr[:longitude]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => ""
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
@@ -73,7 +93,8 @@ describe "Places" do
         lambda do
           visit new_place_path
           fill_in :place_title, :with => place_attr[:title]
-          fill_in :place_position, :with => place_attr[:position]
+          fill_in :place_latitude, :with => place_attr[:latitude]
+          fill_in :place_longitude, :with => place_attr[:longitude]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]

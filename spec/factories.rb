@@ -16,7 +16,8 @@ end
 
 Factory.define :place do |p|
   p.sequence(:title)	{ |n| "Test place #{ n }" }
-  p.position		"+48.8577+002.295"
+  p.latitude    "40.4166909"
+  p.longitude   "-3.7003454"
   p.association		:address
   p.url			"http://www.testplace.com"
   p.author_id 		{ Factory(:friend).receiver.id }

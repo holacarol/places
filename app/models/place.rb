@@ -1,14 +1,19 @@
 class Place < ActiveRecord::Base
   include SocialStream::Models::Object
   # Si hacemos accesible solo algunos atributos, poned:
-  # attr_accessible :address_attributes, :title, :position, :url, :author_id, :owner_id, :user_author_id, :relation_ids
+  # attr_accessible :address_attributes, :title, :latitude, :longitude, :url, :author_id, :owner_id, :user_author_id, :relation_ids
+
+  acts_as_mappable  :lat_column_name => :latitude,
+                    :lng_column_name => :longitude,
+                  #  :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
 
   belongs_to :address, :autosave => true
   accepts_nested_attributes_for :address
 		#, :reject_if => :all_blank
 
   validates :title, :presence => true, :length => { :maximum => 50 }
-  validates :position, :presence => true
+  validates :latitude, :presence => true
+  validates :longitude, :presence => true
 
   # Sphinx search
   define_index do

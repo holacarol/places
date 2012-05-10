@@ -64,7 +64,8 @@ describe PlacesController do
 		:country => "Testland" }
           @attr = {
 		:title => "",
-		:position => "",
+    :latitude => "",
+		:longitude => "",
 		:address_attributes => @address_attr,
 		:url => "",
 		:author_id => @user.id ,
@@ -95,7 +96,8 @@ describe PlacesController do
 		:country => "Testland" }
           @attr = {
 		:title => "Test place",
-		:position => "+48.8577+002.295",
+    :latitude => "40.4166909",
+    :longitude => "-3.7003454",
 		:address_attributes => @address_attr,
 		:url => "http://www.testplace.com",
 		:author_id => @user.id ,

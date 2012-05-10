@@ -12,7 +12,8 @@ describe Place do
     @tie = Factory(:friend)
     @attr = {
 	:title => "Test place",
-	:position => "+48.8577+002.295",
+	:latitude => "40.4166909",
+  :longitude => "-3.7003454",
 	:address_attributes => @address_attr,
 	:url => "http://www.testplace.com",
 	:author_id => @tie.receiver.id ,
@@ -39,42 +40,49 @@ describe Place do
   describe "validations" do
     
     it "should require a nonblank title" do
-      @wrong_place = {:title => " ", :position => "+48.8577+002.295",
+      @wrong_place = {:title => " ", :latitude => "40.4166909", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
 	:owner_id => @tie.sender.id, :user_author_id => @tie.receiver.id }
       Place.new(@wrong_place).should_not be_valid
     end
 
-    it "should require nonblank position" do
-      @wrong_place = {:title => "Test place", :position => " ",
+    it "should require nonblank latitude" do
+      @wrong_place = {:title => "Test place", :latitude => " ", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
 	:owner_id => @tie.sender.id, :user_author_id => @tie.receiver.id }
+      Place.new(@wrong_place).should_not be_valid
+    end
+
+    it "should require nonblank longitude" do
+      @wrong_place = {:title => "Test place", :latitude => "40.4166909", :longitude => " ",
+  :address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
+  :owner_id => @tie.sender.id, :user_author_id => @tie.receiver.id }
       Place.new(@wrong_place).should_not be_valid
     end
 
     it "should require nonblank author_id" do
-      @wrong_place = {:title => "Test place", :position => "+48.8577+002.295",
+      @wrong_place = {:title => "Test place", :latitude => "40.4166909", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => " ",
 	:owner_id => @tie.sender.id, :user_author_id => @tie.receiver.id }
       Place.new(@wrong_place).should_not be_valid
     end
 
     it "should require nonblank owner_id" do
-      @wrong_place = {:title => "Test place", :position => "+48.8577+002.295",
+      @wrong_place = {:title => "Test place", :latitude => "40.4166909", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
 	:owner_id => " ", :user_author_id => @tie.receiver.id }
       Place.new(@wrong_place).should_not be_valid
     end
 
     it "should require nonblank user_author_id" do
-      @wrong_place = {:title => "Test place", :position => "+48.8577+002.295",
+      @wrong_place = {:title => "Test place", :latitude => "40.4166909", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
 	:owner_id => @tie.sender.id, :user_author_id => " " }
       Place.new(@wrong_place).should_not be_valid
     end
 
     it "should reject long title" do
-       @wrong_place = {:title => "a"*51, :position => "+48.8577+002.295",
+       @wrong_place = {:title => "a"*51, :latitude => "40.4166909", :longitude => "-3.7003454",
 	:address_attributes => @address_attr, :url => "http://www.testplace.com", :author_id => @tie.receiver.id,
 	:owner_id => @tie.sender.id, :user_author_id => " " }
       Place.new(@wrong_place).should_not be_valid

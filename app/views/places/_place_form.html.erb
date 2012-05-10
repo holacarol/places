@@ -21,7 +21,8 @@
       <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
       <%= f.text_field :title, :size => 14, :class => "place_name" %>
       <div class="place_description">
-        <div>Position: <%= f.text_field :position, :size => 20 %></div>
+        <div>Latitude: <%= f.text_field :latitude, :size => 20 %></div>
+        <div>Longitude: <%= f.text_field :longitude, :size => 20 %></div>
         <div>URL: <%= f.text_field :url, :size => 20 %></div>
       </div>
     </div>

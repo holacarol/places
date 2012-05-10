@@ -12,8 +12,9 @@ describe Address do
 	:country => "Testland"}
     @place_attr = {
 	:title => "Test place",
-	:position => "+48.8577+002.295",
-        :address_attributes => @address_attr,
+	:latitude => "40.4166909",
+  :longitude => "-3.7003454",
+  :address_attributes => @address_attr,
 	:url => "http://www.testplace.com",
 	:author_id => @user.actor.id ,
 	:owner_id => @user.actor.id,
