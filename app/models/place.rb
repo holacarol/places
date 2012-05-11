@@ -3,13 +3,14 @@ class Place < ActiveRecord::Base
   # Si hacemos accesible solo algunos atributos, poned:
   # attr_accessible :address_attributes, :title, :latitude, :longitude, :url, :author_id, :owner_id, :user_author_id, :relation_ids
 
-  acts_as_mappable  :lat_column_name => :latitude,
-                    :lng_column_name => :longitude,
-                  #  :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
-
   belongs_to :address, :autosave => true
   accepts_nested_attributes_for :address
 		#, :reject_if => :all_blank
+
+  acts_as_mappable  :lat_column_name => :latitude,
+                    :lng_column_name => :longitude
+
+  #before_validation :geocode_address, :on => :create
 
   validates :title, :presence => true, :length => { :maximum => 50 }
   validates :latitude, :presence => true
@@ -53,7 +54,24 @@ class Place < ActiveRecord::Base
       self.address.save!
       self.address_id = address.id
     end
+    geocode_address
     self.valid?
+  end
+
+  private
+  def geocode_address
+    puts "Hola"
+    puts self.address.formatted
+    geo=Geokit::Geocoders::MultiGeocoder.geocode (self.address.formatted)
+    if geo.success
+      puts geo.lat
+      puts geo.lng
+      puts geo.full_address
+    else
+      puts "Ha ocurrido un error"
+    end
+    errors.add(:address, "Could not Geocode address") if !geo.success
+    self.latitude, self.longitude = geo.lat,geo.lng if geo.success
   end
 
 end
