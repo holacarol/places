@@ -1,8 +1,10 @@
 <% @place.build_address %>
 <%= form_for @place do |f| %>
   <% @place.owner_id = current_subject.try(:actor_id) %>
-  <% @place.relation_ids = Relation::Public.instance.id %>
-  
+  <%# @place.relation_ids = Relation::Public.instance.id %>
+  <% @place.latitude = 0 %>
+  <% @place.longitude = 0 %>
+
   <% if f.object.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this activity from being saved:</h2>
@@ -21,8 +23,6 @@
       <%= image_tag("place.png", :alt=> "Place", :class => "place_icon") %>
       <%= f.text_field :title, :size => 14, :class => "place_name" %>
       <div class="place_description">
-        <div>Latitude: <%= f.text_field :latitude, :size => 20 %></div>
-        <div>Longitude: <%= f.text_field :longitude, :size => 20 %></div>
         <div>URL: <%= f.text_field :url, :size => 20 %></div>
       </div>
     </div>
@@ -38,7 +38,9 @@
 
 
   <%= f.hidden_field :owner_id %>
-  <%= f.hidden_field :relation_ids %>
+  <input type="hidden" value=<%= Relation::Public.instance.id %> name="place[relation_ids]" id="place_relation_ids">
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
 
   <div class="place_options">
     <div class="actions">

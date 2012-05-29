@@ -55,8 +55,6 @@
 <div class="place_card_back">
   <div class="place_card_addresstag"><b><%= simple_format("Address: ") %></b></div>
   <div class="place_card_address place_card_info"><%= simple_format(@place.address.formatted) %></div>
-  <div class="place_card_info"><b>Latitude: </b><%= @place.latitude %></div>
-  <div class="place_card_info"><b>Longitude: </b><%= @place.longitude %></div>
   <div class="place_card_info"><b>URL: </b><%= link_to @place.url, "http://" + @place.url, :target => "_blank" %></div>
   <div class="revert_info"><%= link_to "Revert", "#" %></div>
 </div>

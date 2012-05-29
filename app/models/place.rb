@@ -60,16 +60,15 @@ class Place < ActiveRecord::Base
 
   private
   def geocode_address
-    puts "Hola"
-    puts self.address.formatted
+#    puts self.address.formatted
     geo=Geokit::Geocoders::MultiGeocoder.geocode (self.address.formatted)
-    if geo.success
-      puts geo.lat
-      puts geo.lng
-      puts geo.full_address
-    else
-      puts "Ha ocurrido un error"
-    end
+#    if geo.success
+#      puts geo.lat
+#      puts geo.lng
+#      puts geo.full_address
+#    else
+#      puts "Geocode failure"
+#    end
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.latitude, self.longitude = geo.lat,geo.lng if geo.success
   end
