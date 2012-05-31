@@ -149,8 +149,9 @@
 
 .place_list_add {
   //text-align: center;
-  margin: 0 10px 10px 10px;
-  width: 490px;
+  //margin: 0 10px 10px 10px;
+  //width: 490px;
+  display: inline-block;
 }
 
 .place_list_star {
@@ -171,6 +172,10 @@
   color: #1F4A75;
   font-size: 12px;
   margin-bottom: 2px;
+}
+
+.place_list_more {
+  margin: 0 10px;
 }
 
 

@@ -12,6 +12,8 @@ class Place < ActiveRecord::Base
 
   #before_validation :geocode_address, :on => :create
 
+  acts_as_gmappable :process_geocoding => false
+
   validates :title, :presence => true, :length => { :maximum => 50 }
   validates :latitude, :presence => true
   validates :longitude, :presence => true

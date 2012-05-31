@@ -26,9 +26,14 @@
 <br class="clearfloat" />
 <div class="space_center"></div>
 
-<% if profile_subject_is_current? %>
-  <div class ="place_list_add"><%= render :partial => 'places/search' %></div>
-<% end %>
+<div class="place_list_more">
+  <button onclick="#">See on a map</button>
+  <button onclick="#">Discover new places</button>
+  <% if profile_subject_is_current? %>
+    <div class ="place_list_add"><%= render :partial => 'places/search' %></div>
+  <% end %>
+</div>
+
 
 <% unless @activities.empty? %>
   <% @activities.each do |a| %>
