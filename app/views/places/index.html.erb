@@ -4,6 +4,23 @@
   });
 <% end %>
 
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    $('a#button_list').click(function(){
+      if ($(this).hasClass('on')) {
+        $(this).toggleClass("on off");
+        $('a#button_map').toggleClass("on off");
+      }
+    });
+    $('a#button_map').click(function(){
+      if ($(this).hasClass('on')) {
+        $(this).toggleClass("on off");
+        $('a#button_list').toggleClass("on off");
+      }
+    });
+  });
+<% end %>
+
 <% content_for :title do %>
 <%= profile_subject.name + ": " + t('place.title') %>
 <% end %>
@@ -27,14 +44,18 @@
 <div class="space_center"></div>
 
 <div class="place_list_more">
-  <form action="<%=user_places_map_path%>" method="get" id="place_map">
-    <button type="submit">Map</button>
-  </form>
-  <form action="<%=user_places_map_path%>" method="get" id="place_discover">
-    <button type="submit">Discover</button>
-  </form>
-  <div class ="place_list_add"><%= render :partial => 'places/search' %></div>
-
+  <div class="place_list_map">
+    <a id="button_list" class="off" title="button"><%= image_tag("map_icon.png") %></a>
+    <a id="button_map" class="on" title="button">List</a>
+  </div>
+  <div class ="place_list_actions">
+    <form action="<%=user_places_map_path%>" method="get" id="place_discover" class="place_list_discover">
+      <button type="submit">Discover</button>
+    </form>
+    <div class ="place_list_add">
+      <%= render :partial => 'places/search' %>
+    </div>
+  </div>
 </div>
 
 

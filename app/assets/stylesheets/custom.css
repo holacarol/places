@@ -147,11 +147,18 @@
   margin-left: 52px;
 }
 
-.place_list_add {
+.place_list_actions {
   //text-align: center;
   //margin: 0 10px 10px 10px;
   //width: 490px;
   display: inline-block;
+  float: right;
+}
+
+.place_list_add {
+  display: inline-block;
+  float: right;
+  margin-top: 9px;
 }
 
 .place_list_star {
@@ -178,4 +185,39 @@
   margin: 0 10px;
 }
 
+.place_list_map {
+  display: inline-block;
+  margin-top: 16px;
+}
 
+.place_list_discover {
+  display: inline-block;
+}
+
+.on {
+  background: #ccc;
+  cursor: pointer;
+  border-top: solid 2px #eaeaea;
+  border-left: solid 2px #eaeaea;
+  border-bottom: solid 2px #777;
+  border-right: solid 2px #777;
+  padding: 5px 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.off {
+  background: #bbb;
+  cursor: pointer;
+  border-top: solid 2px #777;
+  border-left: solid 2px #777;
+  border-bottom:solid 2px  #eaeaea;
+  border-right: solid 2px #eaeaea;
+  padding: 5px 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#button_map {
+  margin-left: -5px;
+}
