@@ -54,7 +54,7 @@
 }
 
 .place_name {
-  margin-top: 10px;
+//  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
 }
@@ -68,7 +68,10 @@
 
 .place_options {
   padding-top: 7px;
-  text-align:center
+  text-align: right;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
 }
 
 .more_info {
@@ -96,11 +99,13 @@
 }
 
 .place_card_address {
-  margin-left: 50px;
+//  margin-left: 50px;
 }
 
 .place_card_info {
- margin-bottom: 5px;
+ //margin-bottom: 5px;
+ color: #999999;
+ font-size: 12px;
 }
 
 .place_card_see {
@@ -111,15 +116,25 @@
   display: inline-block;
 }
 
+.place_show {
+  margin: 0 10px 5px 10px;
+  position: relative;
+}
+
+.place_show_info {
+  display: inline-block;
+}
+
 /* Place item */
 .place_list_item {
-  margin: 10px 10px 0 10px;
+//  margin: 10px 10px 0 10px;
   //border: 2px solid gray;
-  border-radius: 8px;
-  box-shadow: 0 4px 7px #AAAAAA;
+  border-bottom: 1px solid #CDCDCD;
+//  border-radius: 8px;
+//  box-shadow: 0 4px 7px #AAAAAA;
   padding: 10px;
   text-align: left;
-  width: 465px;
+//  width: 465px;
   min-height: 45px;
   position: relative;
 }
@@ -187,7 +202,6 @@
 
 .place_list_map {
   display: inline-block;
-  margin-top: 16px;
 }
 
 .place_list_discover {
@@ -197,11 +211,11 @@
 .on {
   background: #ccc;
   cursor: pointer;
-  border-top: solid 2px #eaeaea;
-  border-left: solid 2px #eaeaea;
-  border-bottom: solid 2px #777;
-  border-right: solid 2px #777;
-  padding: 5px 5px;
+  border-top: solid 1px #eaeaea;
+  border-left: solid 1px #eaeaea;
+  border-bottom: solid 1px #777;
+  border-right: solid 1px #777;
+  padding: 5px 0px 5px 0px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -209,15 +223,47 @@
 .off {
   background: #bbb;
   cursor: pointer;
-  border-top: solid 2px #777;
-  border-left: solid 2px #777;
-  border-bottom:solid 2px  #eaeaea;
-  border-right: solid 2px #eaeaea;
-  padding: 5px 5px;
+  border-top: solid 1px #777;
+  border-left: solid 1px #777;
+  border-bottom:solid 1px  #eaeaea;
+  border-right: solid 1px #eaeaea;
+  padding: 5px 0px 5px 0px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 #button_map {
   margin-left: -5px;
+  border-radius: 0px 6px 6px 0px;
+}
+
+#button_list {
+  border-radius: 6px 0px 0px 6px;
+}
+
+.place_list_selector {
+  position: relative;
+  top: 9px;
+}
+
+#places_container {
+  overflow-x: hidden;
+  width: 560px;
+}
+
+#places {
+  width: 1126px;
+}
+
+#place_list {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
+  border-top: 1px solid #CDCDCD;
+}
+
+#place_map {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
 }

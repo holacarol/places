@@ -1,0 +1,9 @@
+<div class="place_show_info">
+	<div class="place_name"><%= @place.title %></div>
+	<div class="place_card_address place_card_info">
+		<%= @place.address.formatted %>
+	</div>
+	<div class="place_card_info">
+		<%= link_to @place.url, "http://" + @place.url, :target => "_blank" %>
+	</div>
+</div>

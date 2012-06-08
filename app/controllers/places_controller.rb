@@ -10,14 +10,26 @@ class PlacesController < ApplicationController
 
   PER_PAGE = 20
 
-
-  def map
-    @places = Array.new
-    collection.each do |a|
-      @places << a.activity_objects.first.place
+  def index
+    index! do |format|
+      format.html {
+        @places = Array.new
+        collection.each do |a|
+          @places << a.activity_objects.first.place
+        end
+        @json = @places.to_gmaps4rails
+      }
     end
-    @json = @places.to_gmaps4rails
   end
+
+  def show
+    show! do |format|
+      format.html {
+        @json = @place.to_gmaps4rails
+      }
+    end
+  end
+
 
   def discover
 

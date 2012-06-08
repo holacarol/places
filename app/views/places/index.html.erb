@@ -10,12 +10,29 @@
       if ($(this).hasClass('on')) {
         $(this).toggleClass("on off");
         $('a#button_map').toggleClass("on off");
+        
+        var $marginLefty = $('#places');
+        $marginLefty.animate({
+          marginLeft: parseInt($marginLefty.css('marginLeft'),10) == 0 ?
+            -$marginLefty.outerWidth()/2 :
+            0
+        });
+
+
       }
     });
     $('a#button_map').click(function(){
       if ($(this).hasClass('on')) {
         $(this).toggleClass("on off");
         $('a#button_list').toggleClass("on off");
+        //$('.place_map').toggle();
+
+        var $marginLefty = $('#places');
+        $marginLefty.animate({
+          marginLeft: parseInt($marginLefty.css('marginLeft'),10) == 0 ?
+            -$marginLefty.outerWidth()/2 :
+            0
+        });
       }
     });
   });
@@ -45,8 +62,8 @@
 
 <div class="place_list_more">
   <div class="place_list_map">
-    <a id="button_list" class="off" title="button"><%= image_tag("map_icon.png") %></a>
-    <a id="button_map" class="on" title="button">List</a>
+    <a id="button_list" class="off" title="button"><%= image_tag("list_icon.png", :class => "place_list_selector") %></a>
+    <a id="button_map" class="on" title="button"><%= image_tag("map_icon.png", :class => "place_list_selector") %></a>
   </div>
   <div class ="place_list_actions">
     <form action="<%=user_places_map_path%>" method="get" id="place_discover" class="place_list_discover">
@@ -58,30 +75,38 @@
   </div>
 </div>
 
+<div id="places_container">
+  <div id="places">
+    <div id="place_list">
+      <% unless @activities.empty? %>
+        <% @activities.each do |a| %>
+          <% place = a.activity_objects.first.place %>
+          
+          <%= div_for place do %>
+              <div class="place_list_item">
+                <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
+                <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
+                  <%= place_star(place.post_activity) %>
+                </div>
+                <div class="place_list_content">
+                  <div class="place_list_name"><%= link_to place.title, place %></div>
+                  <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
+                  <div class="place_list_options">
+                    <%= like_place_sentence(place) %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
 
-<% unless @activities.empty? %>
-  <% @activities.each do |a| %>
-    <% place = a.activity_objects.first.place %>
-    
-    <%= div_for place do %>
-      <div class="activity_content">
-        <div class="place_list_item">
-          <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
-          <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
-            <%= place_star(place.post_activity) %>
-          </div>
-          <div class="place_list_content">
-            <div class="place_list_name"><%= link_to place.title, place %></div>
-            <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
-            <div class="place_list_options">
-              <%= like_place_sentence(place) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
+    <div id="place_map">
+      <%= gmaps4rails(@json) %>
+    </div>
+  </div>
+</div>
 
 <br class="clearfloat" />
 <div class="space_center"></div>
+<%= yield :scripts %>

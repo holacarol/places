@@ -1,6 +1,6 @@
 .map_container {
-  padding: 6px;
-  border-width: 1px;
+//  padding: 6px;
+  border-width: 0px;
   border-style: solid;
   border-color: #ccc #ccc #999 #ccc;
   -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
@@ -21,4 +21,8 @@
    width: 400px;
    height: 400px;
    border:#555555 2px solid;
+}
+
+.gmaps4rails_show {
+  height: 270px;
 }
