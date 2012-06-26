@@ -1,12 +1,12 @@
 class PlacesController < ApplicationController
   include SocialStream::Controllers::Objects
   
-  skip_authorize_resource :only => [:new, :map]
-  skip_load_resource :only => :map
+  skip_authorize_resource :only => [:new, :discover]
+  skip_load_resource :only => :discover
 
   belongs_to_subjects :optional => true
 
-  before_filter :profile_subject!, :only => [:index, :map]
+  before_filter :profile_subject!, :only => [:index, :discover]
 
   PER_PAGE = 20
 
@@ -32,7 +32,7 @@ class PlacesController < ApplicationController
 
 
   def discover
-
+    @json = Place.all.to_gmaps4rails
   end
 
 
@@ -45,6 +45,10 @@ class PlacesController < ApplicationController
         profile_subject.wall(:profile,
 			     :for => current_subject,
 			     :object_type => :Place)
+    end
+
+    def friends_places
+
     end
 
 end

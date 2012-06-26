@@ -6,36 +6,10 @@
 
 <%= javascript_tag do %>
   $(document).ready(function(){
-    $('a#my_button').click(function(){
+    $('a#button_list').click(function(){
       if ($(this).hasClass('on')) {
         $(this).toggleClass("on off");
-        $('a#friends_button').attr('class', 'on');
-        $('a#recommended_button').attr('class', 'on');
-      }
-    });
-    $('a#friends_button').click(function(){
-      if ($(this).hasClass('on')) {
-        $(this).toggleClass("on off");
-        $('a#my_button').attr('class', 'on');
-        $('a#recommended_button').attr('class', 'on');
-      }
-    });
-    $('a#recommended_button').click(function(){
-      if ($(this).hasClass('on')) {
-        $(this).toggleClass("on off");
-        $('a#my_button').attr('class', 'on');
-        $('a#friends_button').attr('class', 'on');
-      }
-    });
-  });
-<% end %>
-
-<%= javascript_tag do %>
-  $(document).ready(function(){
-    $('a#list_view').click(function(){
-      if ($(this).hasClass('view_unselected')) {
-        $(this).toggleClass("view_unselected view_selected");
-        $('a#map_view').toggleClass("view_unselected view_selected");
+        $('a#button_map').toggleClass("on off");
         
         var $marginLefty = $('#places');
         $marginLefty.animate({
@@ -43,12 +17,15 @@
             -$marginLefty.outerWidth()/2 :
             0
         });
+
+
       }
     });
-    $('a#map_view').click(function(){
-      if ($(this).hasClass('view_unselected')) {
-        $(this).toggleClass("view_unselected view_selected");
-        $('a#list_view').toggleClass("view_unselected view_selected");
+    $('a#button_map').click(function(){
+      if ($(this).hasClass('on')) {
+        $(this).toggleClass("on off");
+        $('a#button_list').toggleClass("on off");
+        //$('.place_map').toggle();
 
         var $marginLefty = $('#places');
         $marginLefty.animate({
@@ -83,26 +60,18 @@
 <br class="clearfloat" />
 <div class="space_center"></div>
 
-
 <div class="place_list_more">
   <div class="place_list_map">
-    <a id="my_button" class="off" title="button">My places</a>
-    <a id="friends_button" class="on" title="button">Friends places</a>
-    <a id="recommended_button" class="on" title="button">Recommended</a>
+    <a id="button_list" class="off" title="button"><%= image_tag("list_icon.png", :class => "place_list_selector") %></a>
+    <a id="button_map" class="on" title="button"><%= image_tag("map_icon.png", :class => "place_list_selector") %></a>
   </div>
-  <div class ="place_list_add">
+  <div class ="place_list_actions">
+    <form action="<%=user_places_discover_path%>" method="get" id="place_discover" class="place_list_discover">
+      <button type="submit">Discover</button>
+    </form>
+    <div class ="place_list_add">
       <%= render :partial => 'places/search' %>
-  </div>
-</div>
-
-<br class="clearfloat" />
-<div class="space_center"></div>
-
-<div class="place_card_see">
-  <div class="place_card_see_text">
-    <%= link_to t("place.view.list"), "#", :id => "list_view", :class => "view_selected" %>
-     | 
-    <%= link_to t("place.view.map"), "#", :id => "map_view", :class => "view_unselected" %>
+    </div>
   </div>
 </div>
 

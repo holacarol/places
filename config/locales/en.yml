@@ -36,6 +36,9 @@ en:
     comments:
       contacts: "See only my contacts's comments"
       all: "See all comments"
+    view:
+      list: "List view"
+      map: "Map view"
   activity:
     verb:
       like:

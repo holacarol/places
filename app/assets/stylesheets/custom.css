@@ -72,7 +72,7 @@
   display: inline-block;
   position: absolute;
   right: 0px;
-  top: 8px;
+  top: 15px;
 }
 
 .more_info {
@@ -174,7 +174,6 @@
 .place_list_add {
   display: inline-block;
   float: right;
-  margin-top: 9px;
 }
 
 .place_list_star {
@@ -203,6 +202,7 @@
 
 .place_list_map {
   display: inline-block;
+  margin-top: 7px;
 }
 
 .place_list_discover {
@@ -210,31 +210,51 @@
 }
 
 .on {
-  background: #ccc;
+  background: #DDDDDD;
   cursor: pointer;
-  border-top: solid 1px #eaeaea;
-  border-left: solid 1px #eaeaea;
-  border-bottom: solid 1px #777;
-  border-right: solid 1px #777;
-  padding: 5px 0px 5px 0px;
+  border-color: #CCCCCC;
+  padding: 6px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 12px;
 }
 
 .off {
-  background: #bbb;
+  background: #1F4A75;
+  color: white;
   cursor: pointer;
-  border-top: solid 1px #777;
-  border-left: solid 1px #777;
-  border-bottom:solid 1px  #eaeaea;
-  border-right: solid 1px #eaeaea;
-  padding: 5px 0px 5px 0px;
+  border-color: #CCCCCC;
+  padding: 6px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.view_selected {
+  text-decoration: underline;
+}
+
+.view_unselected {
+  text-decoration: none;
+}
+
+#my_button {
+  border-radius: 5px 0px 0px 5px;
+}
+
+#friends_button {
+  margin-left: -3px;
+  border-width: 0 1px;
+  border-style: solid;
+}
+
+#recommended_button {
+  border-radius: 0px 5px 5px 0px;
+  margin-left: -3px;
 }
 
 #button_map {
-  margin-left: -5px;
+  margin-left: -3px;
   border-radius: 0px 6px 6px 0px;
 }
 
