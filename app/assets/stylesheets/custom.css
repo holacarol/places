@@ -213,7 +213,7 @@
   background: #DDDDDD;
   cursor: pointer;
   border-color: #CCCCCC;
-  padding: 6px 10px;
+  padding: 6px 12px;
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 12px;
@@ -224,7 +224,7 @@
   color: white;
   cursor: pointer;
   border-color: #CCCCCC;
-  padding: 6px 10px;
+  padding: 6px 12px;
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 12px;
@@ -272,19 +272,33 @@
   width: 560px;
 }
 
-#places {
+#places, #friends {
   width: 1126px;
 }
 
-#place_list {
+#place_list, #friends_list {
   display: inline-block;
   width: 560px;
   vertical-align: top;
   border-top: 1px solid #CDCDCD;
 }
 
-#place_map {
+#place_map, #friend_map {
   display: inline-block;
   width: 560px;
   vertical-align: top;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: inline-block;
+}
+
+.offscreen {
+  display: block;
+  position: absolute;
+  left: -10000px;
 }

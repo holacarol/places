@@ -11,6 +11,9 @@
         $(this).toggleClass("on off");
         $('a#friends_button').attr('class', 'on');
         $('a#recommended_button').attr('class', 'on');
+
+        $('#places').toggleClass("hidden", false);
+        $('#friends').toggleClass("hidden", true);
       }
     });
     $('a#friends_button').click(function(){
@@ -18,6 +21,9 @@
         $(this).toggleClass("on off");
         $('a#my_button').attr('class', 'on');
         $('a#recommended_button').attr('class', 'on');
+
+        $('#places').toggleClass("hidden", true);
+        $('#friends').toggleClass("hidden", false);
       }
     });
     $('a#recommended_button').click(function(){
@@ -37,7 +43,7 @@
         $(this).toggleClass("view_unselected view_selected");
         $('a#map_view').toggleClass("view_unselected view_selected");
         
-        var $marginLefty = $('#places');
+        var $marginLefty = $('.roll');
         $marginLefty.animate({
           marginLeft: parseInt($marginLefty.css('marginLeft'),10) == 0 ?
             -$marginLefty.outerWidth()/2 :
@@ -50,7 +56,7 @@
         $(this).toggleClass("view_unselected view_selected");
         $('a#list_view').toggleClass("view_unselected view_selected");
 
-        var $marginLefty = $('#places');
+        var $marginLefty = $('.roll');
         $marginLefty.animate({
           marginLeft: parseInt($marginLefty.css('marginLeft'),10) == 0 ?
             -$marginLefty.outerWidth()/2 :
@@ -107,7 +113,7 @@
 </div>
 
 <div id="places_container">
-  <div id="places">
+  <div id="places" class="roll">
     <div id="place_list">
       <% unless @activities.empty? %>
         <% @activities.each do |a| %>
@@ -133,11 +139,57 @@
     </div>
 
     <div id="place_map">
-      <%= gmaps4rails(@json) %>
+      <%= gmaps(:markers     => { :data => @json },
+          :map_options => { :auto_adjust => true },
+          :last_map    => false) %>
     </div>
   </div>
+
+  <div id="friends" class="roll offscreen">
+    <div id="friends_list">
+      <% unless @friends.empty? %>
+        <% @friends.each do |a| %>
+          <% place = a %>
+          
+          <%= div_for place do %>
+              <div class="place_list_item">
+                <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
+                <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
+                  <%= place_star(place.post_activity) %>
+                </div>
+                <div class="place_list_content">
+                  <div class="place_list_name"><%= link_to place.title, place %></div>
+                  <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
+                  <div class="place_list_options">
+                    <%= like_place_sentence(place) %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="friend_map">
+      <%= gmaps(:markers     => { :data => @json2 },
+          :map_options => { :id => "second_map", :auto_adjust => true },
+          :scripts     => :none ) %>
+    </div>
+  </div>
+
 </div>
 
 <br class="clearfloat" />
 <div class="space_center"></div>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    Gmaps.second_map.callback = function() {
+      google.maps.event.addListenerOnce(Gmaps.second_map.serviceObject, 'idle', function() {
+        $('#friends').toggleClass("hidden offscreen");
+      });
+    };
+  </script>
+<% end %>
+
 <%= yield :scripts %>
