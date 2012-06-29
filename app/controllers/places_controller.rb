@@ -12,13 +12,9 @@ class PlacesController < ApplicationController
   def index
     index! do |format|
       format.html {
-        @places = Array.new
-        collection.each do |a|
-          @places << a.activity_objects.first.place
-        end
         @friends = friends_places
-        @json = @places.to_gmaps4rails
-        @json2 = Place.all.to_gmaps4rails
+        @places_json = @places.to_gmaps4rails
+        @friends_json = @friends.to_gmaps4rails
       }
     end
   end
@@ -39,6 +35,10 @@ class PlacesController < ApplicationController
         profile_subject.wall(:profile,
 			     :for => current_subject,
 			     :object_type => :Place)
+      @places = Array.new
+      @activities.each do |a|
+        @places << a.activity_objects.first.place
+      end
     end
 
     def friends_places

@@ -15,6 +15,7 @@
         $('#places').toggleClass("hidden", false);
         $('#friends').toggleClass("hidden", true);
       }
+      return false;
     });
     $('a#friends_button').click(function(){
       if ($(this).hasClass('on')) {
@@ -25,6 +26,7 @@
         $('#places').toggleClass("hidden", true);
         $('#friends').toggleClass("hidden", false);
       }
+      return false;
     });
     $('a#recommended_button').click(function(){
       if ($(this).hasClass('on')) {
@@ -32,6 +34,7 @@
         $('a#my_button').attr('class', 'on');
         $('a#friends_button').attr('class', 'on');
       }
+      return false;
     });
   });
 <% end %>
@@ -50,6 +53,7 @@
             0
         });
       }
+      return false;
     });
     $('a#map_view').click(function(){
       if ($(this).hasClass('view_unselected')) {
@@ -63,6 +67,7 @@
             0
         });
       }
+      return false;
     });
   });
 <% end %>
@@ -92,9 +97,9 @@
 
 <div class="place_list_more">
   <div class="place_list_map">
-    <a id="my_button" class="off" title="button">My places</a>
-    <a id="friends_button" class="on" title="button">Friends places</a>
-    <a id="recommended_button" class="on" title="button">Recommended</a>
+    <a id="my_button" class="off" title="My Places">My places</a>
+    <a id="friends_button" class="on" title="Friends Places">Friends places</a>
+    <a id="recommended_button" class="on" title="Recommended">Recommended</a>
   </div>
   <div class ="place_list_add">
       <%= render :partial => 'places/search' %>
@@ -115,31 +120,15 @@
 <div id="places_container">
   <div id="places" class="roll">
     <div id="place_list">
-      <% unless @activities.empty? %>
-        <% @activities.each do |a| %>
-          <% place = a.activity_objects.first.place %>
-          
-          <%= div_for place do %>
-              <div class="place_list_item">
-                <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
-                <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
-                  <%= place_star(place.post_activity) %>
-                </div>
-                <div class="place_list_content">
-                  <div class="place_list_name"><%= link_to place.title, place %></div>
-                  <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
-                  <div class="place_list_options">
-                    <%= like_place_sentence(place) %>
-                  </div>
-                </div>
-              </div>
-          <% end %>
+      <% unless @places.empty? %>
+        <% @places.each do |place| %>
+          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
         <% end %>
       <% end %>
     </div>
 
     <div id="place_map">
-      <%= gmaps(:markers     => { :data => @json },
+      <%= gmaps(:markers     => { :data => @places_json },
           :map_options => { :auto_adjust => true },
           :last_map    => false) %>
     </div>
@@ -148,30 +137,14 @@
   <div id="friends" class="roll offscreen">
     <div id="friends_list">
       <% unless @friends.empty? %>
-        <% @friends.each do |a| %>
-          <% place = a %>
-          
-          <%= div_for place do %>
-              <div class="place_list_item">
-                <%= image_tag("place.png", :alt=> "Place", :class => "place_list_icon") %>
-                <div class="place_list_star" id="like_<%= dom_id(place.post_activity) %>">
-                  <%= place_star(place.post_activity) %>
-                </div>
-                <div class="place_list_content">
-                  <div class="place_list_name"><%= link_to place.title, place %></div>
-                  <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
-                  <div class="place_list_options">
-                    <%= like_place_sentence(place) %>
-                  </div>
-                </div>
-              </div>
-          <% end %>
+        <% @friends.each do |place| %>          
+          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
         <% end %>
       <% end %>
     </div>
 
     <div id="friend_map">
-      <%= gmaps(:markers     => { :data => @json2 },
+      <%= gmaps(:markers     => { :data => @friends_json },
           :map_options => { :id => "second_map", :auto_adjust => true },
           :scripts     => :none ) %>
     </div>
