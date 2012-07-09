@@ -13,8 +13,32 @@ class PlacesController < ApplicationController
     index! do |format|
       format.html {
         @friends = friends_places
-        @places_json = @places.to_gmaps4rails
-        @friends_json = @friends.to_gmaps4rails
+        @places_json = @places.to_gmaps4rails do |place, marker|
+          marker.picture({
+                  :picture => "/assets/mapmarker22x32.png",
+                  :width   => 22,
+                  :height  => 32,
+                  :shadow_picture => "/assets/shadow32x32.png",
+                  :shadow_width => 32,
+                  :shadow_height => 32,
+                  :shadow_anchor => [11, 32]
+                 })
+          marker.title   place.title
+          marker.infowindow render_to_string(:partial => "/places/place", :locals => { :place => place })
+        end
+        @friends_json = @friends.to_gmaps4rails do |place, marker|
+          marker.picture({
+                  :picture => "/assets/borderorangemarker22x32.png",
+                  :width   => 22,
+                  :height  => 32,
+                  :shadow_picture => "/assets/shadow32x32.png",
+                  :shadow_width => 32,
+                  :shadow_height => 32,
+                  :shadow_anchor => [11, 32]
+                 })
+          marker.title   place.title
+          marker.infowindow render_to_string(:partial => "/places/place", :locals => { :place => place })
+        end
       }
     end
   end
