@@ -40,11 +40,14 @@ group :test do
 end
 
 # Gem for social network
-gem 'social_stream'
+gem 'social_stream', '0.26.0'
 
 # Geocoding and maps
 gem 'geokit'
 gem 'gmaps4rails'
+
+# Recommendation engine
+gem 'recommendable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
