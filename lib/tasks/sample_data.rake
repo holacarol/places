@@ -42,12 +42,12 @@ end
       unless a == actor
         puts a.name + " connecting with " + actor.name
         contact = a.contact_to!(actor)
-	contact.user_author = a.user_author if a.subject_type != "User"
-	contact.relation_ids = Array(Forgery::Extensions::Array.new(a.relation_customs).random.id)
+	      contact.user_author = a.user_author if a.subject_type != "User"
+	      contact.relation_ids = Array(a.relation_custom('friend').id)
 
-	contact = actor.contact_to!(a)
-	contact.user_author = actor.user_author if actor.subject_type != "User"
-	contact.relation_ids = Array(Forgery::Extensions::Array.new(actor.relation_customs).random.id)
+	      contact = actor.contact_to!(a)
+        contact.user_author = actor.user_author if actor.subject_type != "User"
+	      contact.relation_ids = Array(actor.relation_custom('friend').id)
       end
     end
 

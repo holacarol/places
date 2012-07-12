@@ -12,12 +12,20 @@
 
 <% sidebar %>
 
-<%= render :partial => 'card' %>
-
-<div class="place_options">
-  <div class="place_list_options"><%= like_place_sentence(@place) %></div>
-  <div class="verb_like" id="like_<%= dom_id(@place.post_activity) %>"><%= link_like(@place.post_activity)%></div>
+<div class="place_show">
+	<%= render :partial => 'place_info' %>
+	<div class="place_options">
+  	<div class="verb_like" id="like_<%= dom_id(@place.post_activity) %>"><%= link_like(@place.post_activity)%></div>
+    <div class="place_list_options"><%= like_place_sentence(@place) %></div>
+	</div>
 </div>
+
+
+<%= gmaps(:map_options => { :container_class => "map_container", :id => "map", :class => "gmaps4rails_show", :auto_zoom => false, :zoom => 16 }, 
+					:markers => {:data => @json} )%>
+					
+<%= yield :scripts %>
+
 
 <div id="place_comments">
   <%= render :partial => 'activities/place_comments', :locals => { :activity => @place.post_activity } %>

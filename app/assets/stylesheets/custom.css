@@ -54,7 +54,7 @@
 }
 
 .place_name {
-  margin-top: 10px;
+//  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
 }
@@ -68,7 +68,11 @@
 
 .place_options {
   padding-top: 7px;
-  text-align:center
+  text-align: right;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 15px;
 }
 
 .more_info {
@@ -96,11 +100,13 @@
 }
 
 .place_card_address {
-  margin-left: 50px;
+//  margin-left: 50px;
 }
 
 .place_card_info {
- margin-bottom: 5px;
+ //margin-bottom: 5px;
+ color: #999999;
+ font-size: 12px;
 }
 
 .place_card_see {
@@ -111,15 +117,25 @@
   display: inline-block;
 }
 
+.place_show {
+  margin: 0 10px 5px 10px;
+  position: relative;
+}
+
+.place_show_info {
+  display: inline-block;
+}
+
 /* Place item */
 .place_list_item {
-  margin: 10px 10px 0 10px;
+//  margin: 10px 10px 0 10px;
   //border: 2px solid gray;
-  border-radius: 8px;
-  box-shadow: 0 4px 7px #AAAAAA;
+  border-bottom: 1px solid #CDCDCD;
+//  border-radius: 8px;
+//  box-shadow: 0 4px 7px #AAAAAA;
   padding: 10px;
   text-align: left;
-  width: 465px;
+//  width: 465px;
   min-height: 45px;
   position: relative;
 }
@@ -147,10 +163,17 @@
   margin-left: 52px;
 }
 
-.place_list_add {
+.place_list_actions {
   //text-align: center;
-  margin: 0 10px 10px 10px;
-  width: 490px;
+  //margin: 0 10px 10px 10px;
+  //width: 490px;
+  display: inline-block;
+  float: right;
+}
+
+.place_list_add {
+  display: inline-block;
+  float: right;
 }
 
 .place_list_star {
@@ -173,4 +196,109 @@
   margin-bottom: 2px;
 }
 
+.place_list_more {
+  margin: 0 10px;
+}
 
+.place_list_map {
+  display: inline-block;
+  margin-top: 7px;
+}
+
+.place_list_discover {
+  display: inline-block;
+}
+
+.on {
+  background: #DDDDDD;
+  cursor: pointer;
+  border-color: #CCCCCC;
+  padding: 6px 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.off {
+  background: #1F4A75;
+  color: white;
+  cursor: pointer;
+  border-color: #CCCCCC;
+  padding: 6px 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.view_selected {
+  text-decoration: underline;
+}
+
+.view_unselected {
+  text-decoration: none;
+}
+
+#my_button {
+  border-radius: 5px 0px 0px 5px;
+}
+
+#friends_button {
+  margin-left: -3px;
+  border-width: 0 1px;
+  border-style: solid;
+}
+
+#recommended_button {
+  border-radius: 0px 5px 5px 0px;
+  margin-left: -3px;
+}
+
+#button_map {
+  margin-left: -3px;
+  border-radius: 0px 6px 6px 0px;
+}
+
+#button_list {
+  border-radius: 6px 0px 0px 6px;
+}
+
+.place_list_selector {
+  position: relative;
+  top: 9px;
+}
+
+#places_container {
+  overflow-x: hidden;
+  width: 560px;
+}
+
+#places, #friends {
+  width: 1126px;
+}
+
+#place_list, #friends_list {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
+  border-top: 1px solid #CDCDCD;
+}
+
+#place_map, #friend_map {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: inline-block;
+}
+
+.offscreen {
+  display: block;
+  position: absolute;
+  left: -10000px;
+}

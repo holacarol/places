@@ -6,6 +6,7 @@
   //float: left;
   padding: 1px 0 0 2px;
   z-index: 2001;
+  display: inline-block;
 }
 #place_search_input, #global_search_input {
   padding: 0 3px 0 22px;
@@ -26,6 +27,7 @@
   height: 25px;
   width: 300px;
 }
+
 #place_search_display {
   width: 225px;
   display: none;
