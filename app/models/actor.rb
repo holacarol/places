@@ -497,13 +497,13 @@ class Actor < ActiveRecord::Base
   end
   
   # The 'like' qualifications emmited to this actor
-  def likes
+  def liked
     Activity.joins(:activity_verb).where('activity_verbs.name' => "like").
              joins(:activity_objects).where('activity_objects.id' => activity_object_id)
   end
   
   def liked_by(subject) #:nodoc:
-    likes.joins(:channel).merge(Channel.subject_authored_by(subject))
+    liked.joins(:channel).merge(Channel.subject_authored_by(subject))
   end
   
   # Does subject like this {Actor}?
