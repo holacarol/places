@@ -272,18 +272,18 @@
   width: 560px;
 }
 
-#places, #friends {
+#places, #friends, #recommended {
   width: 1126px;
 }
 
-#place_list, #friends_list {
+#place_list, #friends_list, #recommended_list {
   display: inline-block;
   width: 560px;
   vertical-align: top;
   border-top: 1px solid #CDCDCD;
 }
 
-#place_map, #friend_map {
+#place_map, #friend_map, #recommended_map {
   display: inline-block;
   width: 560px;
   vertical-align: top;

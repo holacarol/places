@@ -48,6 +48,7 @@ gem 'gmaps4rails'
 
 # Recommendation engine
 gem 'recommendable'
+gem 'resque-loner'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

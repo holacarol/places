@@ -14,6 +14,7 @@
 
         $('#places').toggleClass("hidden", false);
         $('#friends').toggleClass("hidden", true);
+        $('#recommended').toggleClass("hidden", true);
       }
       return false;
     });
@@ -25,6 +26,7 @@
 
         $('#places').toggleClass("hidden", true);
         $('#friends').toggleClass("hidden", false);
+        $('#recommended').toggleClass("hidden", true);
       }
       return false;
     });
@@ -33,6 +35,10 @@
         $(this).toggleClass("on off");
         $('a#my_button').attr('class', 'on');
         $('a#friends_button').attr('class', 'on');
+
+        $('#places').toggleClass("hidden", true);
+        $('#friends').toggleClass("hidden", true);
+        $('#recommended').toggleClass("hidden", false);
       }
       return false;
     });
@@ -146,6 +152,22 @@
     <div id="friend_map">
       <%= gmaps(:markers     => { :data => @friends_json },
           :map_options => { :id => "second_map", :auto_adjust => true },
+          :scripts     => :none, :last_map => false ) %>
+    </div>
+  </div>
+
+  <div id="recommended" class="roll offscreen">
+    <div id="recommended_list">
+      <% unless @recommended.empty? %>
+        <% @recommended.each do |place| %>          
+          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="recommended_map">
+      <%= gmaps(:markers     => { :data => @recommended_json },
+          :map_options => { :id => "third_map", :auto_adjust => true },
           :scripts     => :none ) %>
     </div>
   </div>
@@ -160,6 +182,11 @@
     Gmaps.second_map.callback = function() {
       google.maps.event.addListenerOnce(Gmaps.second_map.serviceObject, 'idle', function() {
         $('#friends').toggleClass("hidden offscreen");
+      });
+    };
+    Gmaps.third_map.callback = function() {
+      google.maps.event.addListenerOnce(Gmaps.third_map.serviceObject, 'idle', function() {
+        $('#recommended').toggleClass("hidden offscreen");
       });
     };
   </script>
