@@ -6,7 +6,7 @@ class LikesController < ApplicationController
     @like = Like.build(current_subject, current_user, @indirect_id)
 
     if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      correct = current_subject.like @indirect_id.direct_object
+      correct = current_subject.actor.like @indirect_id.direct_object
     end
     
     respond_to do |format|
@@ -23,7 +23,7 @@ class LikesController < ApplicationController
     @like = Like.find!(current_subject, @indirect_id)
 
     if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      correct = current_subject.unlike @indirect_id.direct_object
+      correct = current_subject.actor.unlike @indirect_id.direct_object
     end
     
     respond_to do |format|

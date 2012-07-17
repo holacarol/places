@@ -47,7 +47,7 @@ gem 'geokit'
 gem 'gmaps4rails'
 
 # Recommendation engine
-gem 'recommendable'
+gem 'recommendable', '1.1.2'
 gem 'resque-loner'
 
 # To use ActiveModel has_secure_password
