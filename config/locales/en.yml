@@ -51,6 +51,7 @@ en:
         one: "%{friends} contact"
         other: "%{friends} contacts"
       like_and: " and "
+#      like_you: "you like this"
       like_people:
         one: "%{people} person"
         other: "%{people} people"
@@ -60,6 +61,7 @@ en:
       like_final:
         one: " likes this"
         other: " like this"
+        you: "like this"
 
 #  repository:
 #    order:

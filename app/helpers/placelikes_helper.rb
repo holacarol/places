@@ -29,8 +29,54 @@ module PlacelikesHelper
 					:count => likes_count)
 		end
 
+#		if others_count == 1 && place.post_activity.liked_by?(current_subject)
+#				like_sentence = t("activity.like_construction.like_you")
+#		end
+
 		return like_sentence.html_safe
 	end
+
+
+	def contacts_sentence(place)
+		like_sentence = ""
+		friends_count = friends_like(place)
+		if friends_count > 0
+			like_sentence += t("activity.like_construction.like_friends",
+					:friends => friends_count,
+					:count => friends_count)
+		end
+
+		return like_sentence.html_safe
+	end
+
+	
+
+	def others_sentence(place)
+		like_sentence = ""
+		friends_count = friends_like(place)
+		likes_count = place.post_activity.children.joins(:activity_verb).where('activity_verbs.name' => "like").count
+		others_count = likes_count - friends_count
+		
+		if friends_count > 0 && others_count > 0
+			like_sentence += t("activity.like_construction.like_and")
+			like_sentence += t("activity.like_construction.like_others",
+					:people => others_count,
+					:count => others_count)
+		elsif friends_count = 0 && others_count > 0
+			like_sentence += t("activity.like_construction.like_people",
+					:people => others_count,
+					:count => others_count)
+		end
+
+		if likes_count > 0
+			like_sentence += t("activity.like_construction.like_final",
+					:count => likes_count)
+		end
+
+		return like_sentence.html_safe
+	end
+
+
 
 	# Return the number of friends who like this activity
 	def friends_like(place)

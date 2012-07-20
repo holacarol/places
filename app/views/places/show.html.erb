@@ -16,7 +16,9 @@
 	<%= render :partial => 'place_info' %>
 	<div class="place_options">
   	<div class="verb_like" id="like_<%= dom_id(@place.post_activity) %>"><%= link_like(@place.post_activity)%></div>
-    <div class="place_list_options"><%= like_place_sentence(@place) %></div>
+    <div class="place_list_options">
+      <%= render :partial => 'places/place_like', :locals => { :place => @place } %>
+    </div>
 	</div>
 </div>
 

@@ -100,17 +100,18 @@
 <br class="clearfloat" />
 <div class="space_center"></div>
 
-
-<div class="place_list_more">
-  <div class="place_list_map">
-    <a id="my_button" class="off" title="My Places">My places</a>
-    <a id="friends_button" class="on" title="Friends Places">Friends places</a>
-    <a id="recommended_button" class="on" title="Recommended">Recommended</a>
+<%if profile_subject_is_current?%>
+  <div class="place_list_more">
+    <div class="place_list_map">
+      <a id="my_button" class="off" title="My Places">My places</a>
+      <a id="friends_button" class="on" title="Friends Places">Friends places</a>
+      <a id="recommended_button" class="on" title="Recommended">Recommended</a>
+    </div>
+    <div class ="place_list_add">
+        <%= render :partial => 'places/search' %>
+    </div>
   </div>
-  <div class ="place_list_add">
-      <%= render :partial => 'places/search' %>
-  </div>
-</div>
+<%end%>
 
 <br class="clearfloat" />
 <div class="space_center"></div>
@@ -140,56 +141,60 @@
     </div>
   </div>
 
-  <div id="friends" class="roll offscreen">
-    <div id="friends_list">
-      <% unless @friends.empty? %>
-        <% @friends.each do |place| %>          
-          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
+  <%if profile_subject_is_current?%>
+    <div id="friends" class="roll offscreen">
+      <div id="friends_list">
+        <% unless @friends.empty? %>
+          <% @friends.each do |place| %>          
+            <%= render :partial => 'places/place_list', :locals => { :place => place } %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+
+      <div id="friend_map">
+        <%= gmaps(:markers     => { :data => @friends_json },
+            :map_options => { :id => "second_map", :auto_adjust => true },
+            :scripts     => :none, :last_map => false ) %>
+      </div>
     </div>
 
-    <div id="friend_map">
-      <%= gmaps(:markers     => { :data => @friends_json },
-          :map_options => { :id => "second_map", :auto_adjust => true },
-          :scripts     => :none, :last_map => false ) %>
-    </div>
-  </div>
-
-  <div id="recommended" class="roll offscreen">
-    <div id="recommended_list">
-      <% unless @recommended.empty? %>
-        <% @recommended.each do |place| %>          
-          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
+    <div id="recommended" class="roll offscreen">
+      <div id="recommended_list">
+        <% unless @recommended.empty? %>
+          <% @recommended.each do |place| %>          
+            <%= render :partial => 'places/place_list', :locals => { :place => place } %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <div id="recommended_map">
-      <%= gmaps(:markers     => { :data => @recommended_json },
-          :map_options => { :id => "third_map", :auto_adjust => true },
-          :scripts     => :none ) %>
+      <div id="recommended_map">
+        <%= gmaps(:markers     => { :data => @recommended_json },
+            :map_options => { :id => "third_map", :auto_adjust => true },
+            :scripts     => :none ) %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
 </div>
 
 <br class="clearfloat" />
 <div class="space_center"></div>
 
-<% content_for :scripts do %>
-  <script type="text/javascript" charset="utf-8">
-    Gmaps.second_map.callback = function() {
-      google.maps.event.addListenerOnce(Gmaps.second_map.serviceObject, 'idle', function() {
-        $('#friends').toggleClass("hidden offscreen");
-      });
-    };
-    Gmaps.third_map.callback = function() {
-      google.maps.event.addListenerOnce(Gmaps.third_map.serviceObject, 'idle', function() {
-        $('#recommended').toggleClass("hidden offscreen");
-      });
-    };
-  </script>
+<%if profile_subject_is_current?%>
+  <% content_for :scripts do %>
+    <script type="text/javascript" charset="utf-8">
+      Gmaps.second_map.callback = function() {
+        google.maps.event.addListenerOnce(Gmaps.second_map.serviceObject, 'idle', function() {
+          $('#friends').toggleClass("hidden offscreen");
+        });
+      };
+      Gmaps.third_map.callback = function() {
+        google.maps.event.addListenerOnce(Gmaps.third_map.serviceObject, 'idle', function() {
+          $('#recommended').toggleClass("hidden offscreen");
+        });
+      };
+    </script>
+  <% end %>
 <% end %>
 
 <%= yield :scripts %>

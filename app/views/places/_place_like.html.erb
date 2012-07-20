@@ -1,0 +1,28 @@
+<%= javascript_tag do %>
+  $(function() {
+    $('.place_contacts').hide();
+    $('.place_contacts_summary').tipsy({
+      html: true,
+      hoverable: true,
+      opacity: 0.95,
+      title: function(){
+        return $(this).siblings('.place_contacts').html();
+      }
+    });
+ });
+<% end %>
+
+<% tipsy_sentence = contacts_sentence(place) %>
+<% if !tipsy_sentence.eql?("") %>
+  <%= link_to contacts_sentence(place),
+            'javascript:;',
+            :class => 'place_contacts_summary' %>
+  <div class="place_contacts">
+    Hola
+  </div>
+<% end %>
+
+<%= others_sentence(place) %>
+
+
+
