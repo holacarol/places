@@ -25,7 +25,7 @@ class PlacesController < ApplicationController
                   :shadow_anchor => [11, 32]
                  })
           marker.title   place.title
-          marker.infowindow render_to_string(:partial => "/places/place", :locals => { :place => place })
+          marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
         @friends_json = @friends.to_gmaps4rails do |place, marker|
           marker.picture({
@@ -38,7 +38,7 @@ class PlacesController < ApplicationController
                   :shadow_anchor => [11, 32]
                  })
           marker.title   place.title
-          marker.infowindow render_to_string(:partial => "/places/place", :locals => { :place => place })
+          marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
         @recommended_json = @recommended.to_gmaps4rails do |place, marker|
           marker.picture({
@@ -51,7 +51,7 @@ class PlacesController < ApplicationController
                   :shadow_anchor => [11, 32]
                  })
           marker.title   place.title
-          marker.infowindow render_to_string(:partial => "/places/place", :locals => { :place => place })
+          marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
       }
     end

@@ -12,17 +12,7 @@
  });
 <% end %>
 
-<% tipsy_sentence = contacts_sentence(place) %>
-<% if !tipsy_sentence.eql?("") %>
-  <%= link_to contacts_sentence(place),
-            'javascript:;',
-            :class => 'place_contacts_summary' %>
-  <div class="place_contacts">
-    Hola
-  </div>
-<% end %>
-
-<%= others_sentence(place) %>
+<%= render :partial => 'places/place_like_sentence', :locals => { :place => place } %>
 
 
 

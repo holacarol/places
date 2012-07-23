@@ -302,3 +302,8 @@
   position: absolute;
   left: -10000px;
 }
+
+.place_contact_logo {
+  padding: 1px;
+  display: inline-block;
+}

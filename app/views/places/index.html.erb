@@ -79,7 +79,7 @@
 <% end %>
 
 <% content_for :title do %>
-<%= profile_subject.name + ": " + t('place.title') %>
+  <%= profile_subject.name + ": " + t('place.title') %>
 <% end %>
 
 <% sidebar %>
@@ -134,14 +134,20 @@
       <% end %>
     </div>
 
+    <%if !profile_subject_is_current?%>
     <div id="place_map">
       <%= gmaps(:markers     => { :data => @places_json },
-          :map_options => { :auto_adjust => true },
-          :last_map    => false) %>
+          :map_options => { :auto_adjust => true }) %>
     </div>
   </div>
+  <% else %>
+    <div id="place_map">
+        <%= gmaps(:markers     => { :data => @places_json },
+            :map_options => { :auto_adjust => true },
+            :last_map    => false) %>
+      </div>
+    </div>
 
-  <%if profile_subject_is_current?%>
     <div id="friends" class="roll offscreen">
       <div id="friends_list">
         <% unless @friends.empty? %>
@@ -180,21 +186,71 @@
 <br class="clearfloat" />
 <div class="space_center"></div>
 
-<%if profile_subject_is_current?%>
-  <% content_for :scripts do %>
-    <script type="text/javascript" charset="utf-8">
+
+
+<% content_for :scripts do %>
+
+  <script type="text/javascript" charset="utf-8">
+    Gmaps.map.callback = function() {
+      for (var i = 0; i <  this.markers.length; ++i) {
+        google.maps.event.addListener(Gmaps.map.markers[i].infowindow, 'domready', function() {
+          $(".place_contacts").hide();
+          $('.place_contacts_summary').tipsy({
+            html: true,
+            hoverable: true,
+            opacity: 0.95,
+            title: function(){
+              return $(this).siblings('.place_contacts').html();
+            }
+          });
+        });
+      }
+    };
+  </script> 
+
+  <% if profile_subject_is_current? %>
+  <script type="text/javascript" charset="utf-8">
       Gmaps.second_map.callback = function() {
         google.maps.event.addListenerOnce(Gmaps.second_map.serviceObject, 'idle', function() {
           $('#friends').toggleClass("hidden offscreen");
         });
+
+        for (var i = 0; i <  this.markers.length; ++i) {
+          google.maps.event.addListener(Gmaps.second_map.markers[i].infowindow, 'domready', function() {
+            $(".place_contacts").hide();
+            $('.place_contacts_summary').tipsy({
+              html: true,
+              hoverable: true,
+              opacity: 0.95,
+              title: function(){
+                return $(this).siblings('.place_contacts').html();
+              }
+            });
+          });
+        }
       };
+
       Gmaps.third_map.callback = function() {
         google.maps.event.addListenerOnce(Gmaps.third_map.serviceObject, 'idle', function() {
           $('#recommended').toggleClass("hidden offscreen");
         });
+
+        for (var i = 0; i <  this.markers.length; ++i) {
+          google.maps.event.addListener(Gmaps.third_map.markers[i].infowindow, 'domready', function() {
+            $(".place_contacts").hide();
+            $('.place_contacts_summary').tipsy({
+              html: true,
+              hoverable: true,
+              opacity: 0.95,
+              title: function(){
+                return $(this).siblings('.place_contacts').html();
+              }
+            });
+          });
+        }
       };
-    </script>
-  <% end %>
+  </script>  
+<% end %>
 <% end %>
 
 <%= yield :scripts %>

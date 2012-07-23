@@ -1,0 +1,19 @@
+<% tipsy_sentence = contacts_sentence(place) %>
+<% if !tipsy_sentence.eql?("") %>
+  <%= link_to contacts_sentence(place),
+            'javascript:;',
+            :class => 'place_contacts_summary' %>
+  <div class="place_contacts">
+    <% place.friends(current_subject).each do |a| %>
+  		<div class="place_contact_logo">
+    		<%= link_to image_tag(a.logo.url(:contact),
+                          :alt => a.name,
+                          :size => "24x24"),
+                 	a.subject,
+                 	:title => a.name %>
+  		</div>
+	<% end %>
+  </div>
+<% end %>
+
+<%= others_sentence(place) %>
