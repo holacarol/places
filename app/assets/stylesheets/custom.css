@@ -57,6 +57,15 @@
 //  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
+  color: #1F4A75;
+}
+
+.place_padding {
+  padding: 2px;
+}
+
+.place_big {
+  font-size: 18px;
 }
 
 .place_description {
@@ -306,4 +315,8 @@
 .place_contact_logo {
   padding: 1px;
   display: inline-block;
+}
+
+.watermark {
+  color: #879EB5;
 }

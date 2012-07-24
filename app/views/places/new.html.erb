@@ -1,5 +1,9 @@
 <% toolbar :home %><% sidebar %>
-<h1>New Place</h1>
+<% content_for :title do %>
+  <%= t('site.name')  + ": " + t('place.title') %>
+<% end %>
 
-<%= render 'place_form' %>
+<div class="place_big"> Add new place</div>
+
+<%= render 'form' %>
 

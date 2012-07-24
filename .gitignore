@@ -34,3 +34,6 @@ webrat.log
 # Ignore Sphinx files
 /config/development.sphinx.conf
 /db/sphinx/*
+
+# Ignore Recommendable files
+dump.rdb

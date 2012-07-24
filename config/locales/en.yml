@@ -22,6 +22,13 @@ en:
     mine: "My places"
     name: "place"
     name_title: "Place name"
+    url_title: "Web URL"
+    address:
+      street: "Address"
+      locality: "City"
+      region: "Region"
+      postalcode: "Postalcode"
+      country: "Country"
     not_mine: "Places"
     one: "a place"
     simple_all: "All"
