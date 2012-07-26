@@ -66,6 +66,7 @@
 
 .place_big {
   font-size: 18px;
+  padding: 0 0 5px 5px;
 }
 
 .place_description {
@@ -82,6 +83,11 @@
   position: absolute;
   right: 0px;
   top: 15px;
+}
+
+.place_create {
+  position: relative;
+  display: inline-block;
 }
 
 .more_info {

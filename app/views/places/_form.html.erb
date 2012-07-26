@@ -1,5 +1,5 @@
 <% @place.build_address %>
-<%= form_for @place do |f| %>
+<%= form_for @place, :html => {:onkeypress => "return event.keyCode!=13"} do |f| %>
   <% @place.owner_id = current_subject.try(:actor_id) %>
   <%# @place.relation_ids = Relation::Public.instance.id %>
   <% @place.latitude = 0 %>
@@ -20,7 +20,7 @@
 
   <div class="place_show">
     <div class="place_show_info">
-      <div class="place_padding"><%= f.text_field :title, :size => 30, :class => "place_name" %></div>
+      <div class="place_padding"><%= f.text_field :title, :size => 30, :class => "place_name", :oninput =>"keyUpEvent();" %></div>
       <div class="place_padding">
         <%= render :partial => 'shared/address_form', :locals => {:form => f} %>
       </div>
@@ -36,7 +36,7 @@
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
 
-  <div class="place_options">
+  <div class="place_create">
     <div class="actions">
       <%= f.submit %>
     </div>
@@ -44,8 +44,117 @@
 
 <% end %>
 
+<%= gmaps(:map_options => { :libraries => ["places"], :container_class => "map_container", :id => "map", :class => "gmaps4rails_show", :zoom => 1, :center_latitude => 20, :center_longitude => 0 })%>
+
+<%= yield :scripts %>
 
 <%= javascript_tag do %>
   $(".place_name").watermark('<%= escape_javascript(I18n.t('place.name_title')) %>', {useNative: false, className: 'watermark'});
   $(".place_url").watermark('<%= escape_javascript(I18n.t('place.url_title')) %>', {useNative: false, className: 'watermark'});
+
+  var keyupTimer;
+  function keyUpEvent(){
+    clearTimeout(keyupTimer);
+    keyupTimer = setTimeout(searchPlace, 1000);
+  }
+
+  function searchPlace(){
+  }
+
+  function parseCountry(address) {
+    var lastComma = address.lastIndexOf(", ");
+    if (lastComma == -1) {
+      lastComma = -2;
+    }
+    return address.substring(lastComma + 2);
+  }
+
+  function parseStreetNNumber(address, locality) {
+    var city = address.lastIndexOf(locality);
+    return address.substring(0, city - 2);
+  }
 <% end %>
+
+<%= javascript_tag do %>
+function initialize() {
+  var map = Gmaps.map.serviceObject;
+
+  var input = document.getElementById('place_title');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  autocomplete.bindTo('bounds', map);
+
+  var infowindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker({
+    map: map
+  });
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    $(".street").val("");
+    $(".postalcode").val("");
+    $(".locality").val("");
+    $(".region").val("");
+    $(".country").val("");
+    $(".place_url").val("");
+
+    infowindow.close();
+    var place = autocomplete.getPlace();
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);  // Why 17? Because it looks good.
+    }
+
+    if (place.name) {
+      $(".place_name").blur();
+      $(".place_name").val(place.name);
+    }
+
+    var locality;
+    if (place.address_components) {
+      for (var i = 0; i < place.address_components.length; i++ ) {
+        var component = place.address_components[i].types[0];
+        var component_value = place.address_components[i].long_name;
+        if (component == "postal_code") {
+          $(".postalcode").val(component_value);
+        } else if (component == "locality") {
+          locality = component_value;
+          $(".locality").val(component_value);
+        } else if (component == "administrative_area_level_1" || component == "administrative_area_level_2") {
+          $(".region").val(component_value);
+        //} else if (component == "country") {
+        //  $(".country").val(component_value);
+        }
+      }
+    }
+
+    if (place.formatted_address) {
+      $(".street").val(parseStreetNNumber(place.formatted_address, locality));
+      $(".country").val(parseCountry(place.formatted_address));
+    }
+
+    if (place.website) {
+     $(".place_url").val(place.website);
+    }
+
+    var image = new google.maps.MarkerImage(
+        place.icon,
+        new google.maps.Size(71, 71),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(17, 34),
+        new google.maps.Size(35, 35));
+    marker.setIcon(image);
+    marker.setPosition(place.geometry.location);
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + place.formatted_address + '</div>');
+    infowindow.open(map, marker);
+  });
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+<% end %>
+
+
+
+
