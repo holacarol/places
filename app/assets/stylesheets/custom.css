@@ -86,8 +86,7 @@
 }
 
 .place_create {
-  position: relative;
-  display: inline-block;
+  margin: 0 0 0 12px;
 }
 
 .more_info {
@@ -134,6 +133,11 @@
 
 .place_show {
   margin: 0 10px 5px 10px;
+  position: relative;
+}
+
+.place_show_form {
+  margin: 0 10px 0px 10px;
   position: relative;
 }
 
@@ -325,4 +329,9 @@
 
 .watermark {
   color: #879EB5;
+}
+
+.place_window_title {
+  font-size: 13px;
+  font-weight: bold;
 }

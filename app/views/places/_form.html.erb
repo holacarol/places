@@ -18,9 +18,9 @@
   <% end %>
 
 
-  <div class="place_show">
+  <div class="place_show_form">
     <div class="place_show_info">
-      <div class="place_padding"><%= f.text_field :title, :size => 30, :class => "place_name", :oninput =>"keyUpEvent();" %></div>
+      <div class="place_padding"><%= f.text_field :title, :size => 46, :class => "place_name", :oninput =>"keyUpEvent();" %></div>
       <div class="place_padding">
         <%= render :partial => 'shared/address_form', :locals => {:form => f} %>
       </div>
@@ -147,7 +147,7 @@ function initialize() {
     marker.setIcon(image);
     marker.setPosition(place.geometry.location);
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + place.formatted_address + '</div>');
+    infowindow.setContent('<div><div class=\"place_window_title\">' + place.name + '</div>' + place.formatted_address + '</div>');
     infowindow.open(map, marker);
   });
 

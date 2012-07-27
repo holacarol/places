@@ -73,10 +73,6 @@ class Place < ActiveRecord::Base
     friends
   end
 
-
-
-
-  private
   def geocode_address
 #    puts self.address.formatted
     geo=Geokit::Geocoders::MultiGeocoder.geocode (self.address.formatted)
@@ -89,6 +85,7 @@ class Place < ActiveRecord::Base
 #    end
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.latitude, self.longitude = geo.lat,geo.lng if geo.success
+    geo.success
   end
 
 end

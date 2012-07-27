@@ -58,6 +58,13 @@ class PlacesController < ApplicationController
   end
 
   def show
+    if (@place.latitude == 0 && @place.longitude == 0) 
+      if @place.geocode_address
+        puts ("LATITUDE: " << @place.latitude.to_s)
+        puts ("LONGITUDE: " << @place.longitude.to_s)
+        @place.save
+      end
+    end
     show! do |format|
       format.html {
         @json = @place.to_gmaps4rails
