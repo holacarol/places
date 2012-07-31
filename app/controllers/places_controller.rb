@@ -60,9 +60,8 @@ class PlacesController < ApplicationController
   def show
     if (@place.latitude == 0 && @place.longitude == 0) 
       if @place.geocode_address
-        puts ("LATITUDE: " << @place.latitude.to_s)
-        puts ("LONGITUDE: " << @place.longitude.to_s)
-        @place.save
+        @place.update_column(:latitude, @place.latitude)
+        @place.update_column(:longitude, @place.longitude)
       end
     end
     show! do |format|

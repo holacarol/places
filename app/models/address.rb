@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
 
   validates :streetAddress, :presence => true
   validates :locality, :presence => true
-  validates :region, :presence => true
+  #validates :region, :presence => true
   validates :postalCode, :presence => true
   validates :country, :presence => true
   validates_uniqueness_of :streetAddress, :scope => [:locality, :postalCode]
@@ -15,9 +15,15 @@ class Address < ActiveRecord::Base
   private
   
     def set_formatted
-      self.formatted =	streetAddress + "\n" + 
-			postalCode + " " + locality + " (" + region + ")" + "\n" + 
-			country
+
+      self.formatted =	streetAddress + " " + 
+			postalCode + " " + locality
+
+      if !region.eql?("")
+        self.formatted += " (" + region + ")"
+      end
+
+      self.formatted += " " + country
     end
 
 end

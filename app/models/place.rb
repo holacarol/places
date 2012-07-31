@@ -1,7 +1,7 @@
 class Place < ActiveRecord::Base
   include SocialStream::Models::Object
   # Si hacemos accesible solo algunos atributos, poned:
-  # attr_accessible :address_attributes, :title, :latitude, :longitude, :url, :author_id, :owner_id, :user_author_id, :relation_ids
+  #attr_accessible :address_attributes, :title, :latitude, :longitude, :url, :author_id, :owner_id, :user_author_id, :relation_ids
 
   belongs_to :address, :autosave => true
   accepts_nested_attributes_for :address
