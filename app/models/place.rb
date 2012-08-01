@@ -7,6 +7,8 @@ class Place < ActiveRecord::Base
   accepts_nested_attributes_for :address
 		#, :reject_if => :all_blank
 
+  before_save :format_website
+
   acts_as_mappable  :lat_column_name => :latitude,
                     :lng_column_name => :longitude
 
@@ -56,7 +58,9 @@ class Place < ActiveRecord::Base
       self.address.save!
       self.address_id = address.id
     end
-    geocode_address
+    if (self.latitude == 0 && self.longitude == 0)
+      geocode_address
+    end
     self.valid?
   end
 
@@ -75,7 +79,8 @@ class Place < ActiveRecord::Base
 
   def geocode_address
 #    puts self.address.formatted
-    geo=Geokit::Geocoders::MultiGeocoder.geocode (self.address.formatted)
+#    puts CGI.escape(self.address.formatted)
+    geo=Geokit::Geocoders::MultiGeocoder.geocode(self.address.formatted)
 #    if geo.success
 #      puts geo.lat
 #      puts geo.lng
@@ -87,5 +92,13 @@ class Place < ActiveRecord::Base
     self.latitude, self.longitude = geo.lat,geo.lng if geo.success
     geo.success
   end
+
+  protected
+  def format_website
+    if self.url.present? && !self.url.start_with?("http://")
+      self.url = "http://" + self.url
+    end
+  end
+
 
 end

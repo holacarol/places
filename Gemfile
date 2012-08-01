@@ -43,7 +43,7 @@ end
 gem 'social_stream', '0.26.0'
 
 # Geocoding and maps
-gem 'geokit'
+gem 'geokit', :git => 'git://github.com/imajes/geokit.git'
 gem 'gmaps4rails'
 
 # Recommendation engine

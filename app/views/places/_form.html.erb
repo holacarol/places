@@ -69,9 +69,16 @@
     return address.substring(lastComma + 2);
   }
 
-  function parseStreetNNumber(address, locality) {
+  function parseStreetNNumber(address, locality, postalcode) {
     var city = address.lastIndexOf(locality);
-    return address.substring(0, city - 2);
+    var postal = address.lastIndexOf(postalcode);
+    var cutindex;
+    if (postal == -1 || city < postal) {
+      cutindex = city;
+    } else {
+      cutindex = postal;
+    }
+    return address.substring(0, cutindex - 2);
   }
 <% end %>
 
@@ -112,11 +119,13 @@ function initialize() {
     }
 
     var locality;
+    var postalcode;
     if (place.address_components) {
       for (var i = 0; i < place.address_components.length; i++ ) {
         var component = place.address_components[i].types[0];
         var component_value = place.address_components[i].long_name;
         if (component == "postal_code") {
+          postalcode = component_value;
           $(".postalcode").val(component_value);
         } else if (component == "locality") {
           locality = component_value;
@@ -130,13 +139,16 @@ function initialize() {
     }
 
     if (place.formatted_address) {
-      $(".street").val(parseStreetNNumber(place.formatted_address, locality));
+      $(".street").val(parseStreetNNumber(place.formatted_address, locality, postalcode));
       $(".country").val(parseCountry(place.formatted_address));
     }
 
     if (place.website) {
      $(".place_url").val(place.website);
     }
+
+    $("#place_latitude").val(place.geometry.location.lat());
+    $("#place_longitude").val(place.geometry.location.lng());
 
     var image = new google.maps.MarkerImage(
         place.icon,

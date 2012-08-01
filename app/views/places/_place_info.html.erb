@@ -4,6 +4,6 @@
 		<%= @place.address.formatted %>
 	</div>
 	<div class="place_card_info">
-		<%= link_to @place.url, "http://" + @place.url, :target => "_blank" %>
+		<%= link_to @place.url, @place.url, :target => "_blank" %>
 	</div>
 </div>

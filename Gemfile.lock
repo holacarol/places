@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/imajes/geokit.git
+  revision: afd32aae0d7fb072a178b84f8dc37b53d803f956
+  specs:
+    geokit (1.6.5)
+      multi_json (>= 1.3.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -78,8 +85,6 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
-    geokit (1.6.5)
-      multi_json
     ging-opengraph (0.0.5)
       hashie
       nokogiri (>= 1.4.0)
@@ -325,7 +330,7 @@ DEPENDENCIES
   faker
   foreigner (= 1.1.1)
   forgery (= 0.5.0)
-  geokit
+  geokit!
   gmaps4rails
   jquery-rails
   mysql2
