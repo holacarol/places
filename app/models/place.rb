@@ -93,6 +93,15 @@ class Place < ActiveRecord::Base
     geo.success
   end
 
+  def as_json(options={})
+    super(
+      :except => [:activity_object_id, :address_id, :created_at, :updated_at],
+      :include => {
+        :address => {}},
+      :methods => [:title]
+    )
+  end
+
   protected
   def format_website
     if self.url.present? && !self.url.start_with?("http://")

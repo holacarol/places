@@ -11,9 +11,9 @@ class PlacesController < ApplicationController
 
   def index
     index! do |format|
+      @friends = friends_places
+      @recommended = current_subject.recommendations
       format.html {
-        @friends = friends_places
-        @recommended = current_subject.recommendations
         @places_json = @places.to_gmaps4rails do |place, marker|
           marker.picture({
                   :picture => "/assets/mapmarker22x32.png",
@@ -54,6 +54,7 @@ class PlacesController < ApplicationController
           marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
       }
+      format.json { render :json => {:myplaces => @places, :friends => @friends, :recommended => @recommended}}
     end
   end
 
@@ -68,6 +69,7 @@ class PlacesController < ApplicationController
       format.html {
         @json = @place.to_gmaps4rails
       }
+      format.json { render :json => @place }
     end
   end
 
