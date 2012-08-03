@@ -25,7 +25,8 @@
         <%= render :partial => 'shared/address_form', :locals => {:form => f} %>
       </div>
       <div class="place_padding">
-        <%= f.text_field :url, :size => 20, :class => "place_url" %>
+        <%= f.text_field :phone_number, :size => 21, :class => "place_phone_number" %>
+        <%= f.text_field :url, :size => 27, :class => "place_url" %>
       </div>
     </div>
   </div>
@@ -38,7 +39,7 @@
 
   <div class="place_create">
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "I like this place" %>
     </div>
   </div>
 
@@ -50,6 +51,7 @@
 
 <%= javascript_tag do %>
   $(".place_name").watermark('<%= escape_javascript(I18n.t('place.name_title')) %>', {useNative: false, className: 'watermark'});
+  $(".place_phone_number").watermark('<%= escape_javascript(I18n.t('place.phone_title')) %>', {useNative: false, className: 'watermark'});
   $(".place_url").watermark('<%= escape_javascript(I18n.t('place.url_title')) %>', {useNative: false, className: 'watermark'});
 
   var keyupTimer;
@@ -102,6 +104,7 @@ function initialize() {
     $(".locality").val("");
     $(".region").val("");
     $(".country").val("");
+    $(".place_phone_number").val("");
     $(".place_url").val("");
 
     infowindow.close();
@@ -141,6 +144,10 @@ function initialize() {
     if (place.formatted_address) {
       $(".street").val(parseStreetNNumber(place.formatted_address, locality, postalcode));
       $(".country").val(parseCountry(place.formatted_address));
+    }
+
+    if (place.formatted_phone_number) {
+     $(".place_phone_number").val(place.formatted_phone_number);
     }
 
     if (place.website) {

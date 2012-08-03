@@ -73,6 +73,7 @@ end
       :latitude     => latitude,
 			:longitude 		=> longitude,
 			:address_attributes 	=> address,
+      :phone_number => Faker::PhoneNumber.phone_number,
 			:url			=> Faker::Internet.domain_name,
 			:author_id		=> a.id,
 			:owner_id		=> a.id,

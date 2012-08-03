@@ -19,6 +19,7 @@ Factory.define :place do |p|
   p.latitude    "40.4166909"
   p.longitude   "-3.7003454"
   p.association		:address
+  p.phone_number  "915 34 27 84"
   p.url			"http://www.testplace.com"
   p.author_id 		{ Factory(:friend).receiver.id }
   p.owner_id 		{ |q| q.author_id }

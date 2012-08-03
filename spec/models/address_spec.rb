@@ -15,6 +15,7 @@ describe Address do
 	:latitude => "40.4166909",
   :longitude => "-3.7003454",
   :address_attributes => @address_attr,
+  :phone_number => "915 34 27 84",
 	:url => "http://www.testplace.com",
 	:author_id => @user.actor.id ,
 	:owner_id => @user.actor.id,

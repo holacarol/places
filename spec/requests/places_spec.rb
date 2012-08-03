@@ -22,6 +22,7 @@ describe "Places" do
           fill_in :place_title, :with => ""
           fill_in :place_latitude, :with => place_attr[:latitude]
           fill_in :place_longitude, :with => place_attr[:longitude]
+          fill_in :place_phone_number, :with => place_attr[:phone_number]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
@@ -39,6 +40,7 @@ describe "Places" do
           fill_in :place_title, :with => place_attr[:title]
           fill_in :place_latitude, :with => ""
           fill_in :place_longitude, :with => place_attr[:longitude]
+          fill_in :place_phone_number, :with => place_attr[:phone_number]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
@@ -56,6 +58,7 @@ describe "Places" do
           fill_in :place_title, :with => place_attr[:title]
           fill_in :place_latitude, :with => place_attr[:latitude]
           fill_in :place_longitude, :with => ""
+          fill_in :place_phone_number, :with => place_attr[:phone_number]
           fill_in :place_url, :with => place_attr[:url]
     fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
     fill_in :place_address_attributes_locality  , :with => address_attr[:locality]
@@ -73,6 +76,7 @@ describe "Places" do
           fill_in :place_title, :with => place_attr[:title]
           fill_in :place_latitude, :with => place_attr[:latitude]
           fill_in :place_longitude, :with => place_attr[:longitude]
+          fill_in :place_phone_number, :with => place_attr[:phone_number]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => ""
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]
@@ -95,6 +99,7 @@ describe "Places" do
           fill_in :place_title, :with => place_attr[:title]
           fill_in :place_latitude, :with => place_attr[:latitude]
           fill_in :place_longitude, :with => place_attr[:longitude]
+          fill_in :place_phone_number, :with => place_attr[:phone_number]
           fill_in :place_url, :with => place_attr[:url]
 	  fill_in :place_address_attributes_streetAddress, :with => address_attr[:streetAddress]
 	  fill_in :place_address_attributes_locality	, :with => address_attr[:locality]

@@ -22,7 +22,8 @@ en:
     mine: "My places"
     name: "place"
     name_title: "Place name"
-    url_title: "Web URL"
+    phone_title: "Phone number"
+    url_title: "Website"
     address:
       street: "Address"
       locality: "City"

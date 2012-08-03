@@ -79,6 +79,17 @@ class PlacesController < ApplicationController
     end
   end
 
+  def create
+    create! do |success, failure|
+      success.html {
+        @like = Like.build(current_subject, current_user, @place.post_activity)
+        correct = current_subject.actor.like @place
+        @like.save
+        redirect_to @place
+      }
+    end
+  end
+
 
   private
 
