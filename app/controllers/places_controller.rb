@@ -54,7 +54,13 @@ class PlacesController < ApplicationController
           marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
       }
-      format.json { render :json => {:myplaces => @places, :friends => @friends, :recommended => @recommended}}
+      format.json { 
+        if profile_subject_is_current?
+          render :json => {:myplaces => @places, :friends => @friends, :recommended => @recommended}, :callback => params[:callback]
+        else
+          render :json => @places, :callback => params[:callback]
+        end
+      }
     end
   end
 
@@ -69,7 +75,7 @@ class PlacesController < ApplicationController
       format.html {
         @json = @place.to_gmaps4rails
       }
-      format.json { render :json => @place }
+      format.json { render :json => @place, :callback => params[:callback] }
     end
   end
 
