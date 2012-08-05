@@ -3,6 +3,8 @@ class Place < ActiveRecord::Base
   # Si hacemos accesible solo algunos atributos, poned:
   #attr_accessible :address_attributes, :title, :latitude, :longitude, :url, :phone_number, :author_id, :owner_id, :user_author_id, :relation_ids
 
+  attr_accessor :current_subject
+
   belongs_to :address, :autosave => true
   accepts_nested_attributes_for :address
 		#, :reject_if => :all_blank
@@ -98,8 +100,16 @@ class Place < ActiveRecord::Base
       :except => [:activity_object_id, :address_id, :created_at, :updated_at],
       :include => {
         :address => {}},
-      :methods => [:title]
+      :methods => [:title, :liked?, :post_activity_id]
     )
+  end
+
+  def liked?
+    self.post_activity.liked_by?(current_subject)
+  end
+
+  def post_activity_id
+    self.post_activity.id
   end
 
   protected

@@ -55,6 +55,15 @@ class PlacesController < ApplicationController
         end
       }
       format.json { 
+        @places.map{|place|
+        place.current_subject = current_subject}
+
+        @friends.map{|place|
+        place.current_subject = current_subject}
+
+        @recommended.map{|place|
+        place.current_subject = current_subject}
+
         if profile_subject_is_current?
           render :json => {:myplaces => @places, :friends => @friends, :recommended => @recommended}, :callback => params[:callback]
         else
@@ -75,7 +84,18 @@ class PlacesController < ApplicationController
       format.html {
         @json = @place.to_gmaps4rails
       }
-      format.json { render :json => @place, :callback => params[:callback] }
+      format.json { 
+        @place.current_subject = current_subject
+        render :json => {
+        :place => @place, 
+        :comments => @place.post_activity.comments.map{ |activity| 
+          {'author' => activity.direct_activity_object.author,
+          'thumb' => root_url + activity.direct_activity_object.author.logo.url(:actor),
+          'text' => activity.direct_activity_object.description,
+          'type' => activity.from_contact?(current_subject) ? 'friend' : 'other'}
+          }
+        }, :callback => params[:callback] 
+      }
     end
   end
 
@@ -83,7 +103,7 @@ class PlacesController < ApplicationController
     create! do |success, failure|
       success.html {
         @like = Like.build(current_subject, current_user, @place.post_activity)
-        correct = current_subject.actor.like @place
+        current_subject.actor.like @place
         @like.save
         redirect_to @place
       }
@@ -119,6 +139,6 @@ class PlacesController < ApplicationController
       joins('INNER JOIN channels ON channels.id = activities.channel_id').
       joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
       where('contacts.sender_id' => current_subject).where('contacts.ties_count' => 1)
-  end
+    end
 
 end
