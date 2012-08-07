@@ -9,8 +9,10 @@ class PlacesController < ApplicationController
 
   PER_PAGE = 20
 
+
   def index
     index! do |format|
+      @places_pag = Kaminari.paginate_array(@places).page(params[:page]).per(5)
       @friends = friends_places
       @recommended = current_subject.recommendations
       format.html {

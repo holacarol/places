@@ -127,11 +127,12 @@
 <div id="places_container">
   <div id="places" class="roll">
     <div id="place_list">
-      <% unless @places.empty? %>
-        <% @places.each do |place| %>
+      <% unless @places_pag.empty? %>
+        <% @places_pag.each do |place| %>
           <%= render :partial => 'places/place_list', :locals => { :place => place } %>
         <% end %>
       <% end %>
+      <div class="paginator"><%= paginate @places_pag %></div>
     </div>
 
     <%if !profile_subject_is_current?%>

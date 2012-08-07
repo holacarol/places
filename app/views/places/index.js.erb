@@ -1,0 +1,2 @@
+$('.place_list').html('<%= escape_javascript(<% unless @places_pag.empty? %><% @places_pag.each do |place| %><%= render :partial => 'places/place_list', :locals => { :place => place } %><% end %><% end %> %>');
+$('.paginator').html('<%= escape_javascript(paginate @places_pag) %>');
