@@ -127,12 +127,7 @@
 <div id="places_container">
   <div id="places" class="roll">
     <div id="place_list">
-      <% unless @places_pag.empty? %>
-        <% @places_pag.each do |place| %>
-          <%= render :partial => 'places/place_list', :locals => { :place => place } %>
-        <% end %>
-      <% end %>
-      <div class="paginator"><%= paginate @places_pag %></div>
+      <%= render :partial => 'places/places_pag', :locals => {:places_pag => @places_pag, :page => :my_page} %>
     </div>
 
     <%if !profile_subject_is_current?%>
@@ -151,11 +146,7 @@
 
     <div id="friends" class="roll offscreen">
       <div id="friends_list">
-        <% unless @friends.empty? %>
-          <% @friends.each do |place| %>          
-            <%= render :partial => 'places/place_list', :locals => { :place => place } %>
-          <% end %>
-        <% end %>
+        <%= render :partial => 'places/places_pag', :locals => {:places_pag => @friends_pag, :page => :friend_page} %>
       </div>
 
       <div id="friend_map">
@@ -167,11 +158,7 @@
 
     <div id="recommended" class="roll offscreen">
       <div id="recommended_list">
-        <% unless @recommended.empty? %>
-          <% @recommended.each do |place| %>          
-            <%= render :partial => 'places/place_list', :locals => { :place => place } %>
-          <% end %>
-        <% end %>
+        <%= render :partial => 'places/places_pag', :locals => {:places_pag => @recommended_pag, :page => :recomm_page} %>
       </div>
 
       <div id="recommended_map">

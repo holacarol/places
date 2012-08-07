@@ -1,2 +1,9 @@
-$('.place_list').html('<%= escape_javascript(<% unless @places_pag.empty? %><% @places_pag.each do |place| %><%= render :partial => 'places/place_list', :locals => { :place => place } %><% end %><% end %> %>');
-$('.paginator').html('<%= escape_javascript(paginate @places_pag) %>');
+<% if !params[:my_page].nil? %>
+	$('#place_list').html('<%= escape_javascript render(:partial => "places/places_pag", :locals => {:places_pag => @places_pag, :page => :my_page}) %>');
+<% elsif !params[:friend_page].nil? %>
+	$('#friends_list').html('<%= escape_javascript render(:partial => "places/places_pag", :locals => {:places_pag => @friends_pag, :page => :friend_page}) %>');
+<% elsif !params[:recomm_page].nil? %>
+	$('#recommended_list').html('<%= escape_javascript render(:partial => "places/places_pag", :locals => {:places_pag => @recommended_pag, :page => :recomm_page}) %>');
+<% end %>
+
+		

@@ -1,0 +1,6 @@
+<% unless places_pag.empty? %>
+	<% places_pag.each do |place| %>
+  	<%= render :partial => 'places/place_list', :locals => { :place => place } %>
+  <% end %>
+<% end %>
+<%= paginate places_pag, :param_name => page %>

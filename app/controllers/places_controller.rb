@@ -12,9 +12,11 @@ class PlacesController < ApplicationController
 
   def index
     index! do |format|
-      @places_pag = Kaminari.paginate_array(@places).page(params[:page]).per(5)
       @friends = friends_places
       @recommended = current_subject.recommendations
+      @places_pag = Kaminari.paginate_array(@places).page(params[:my_page]).per(6)
+      @friends_pag = Kaminari.paginate_array(@friends).page(params[:friend_page]).per(6)
+      @recommended_pag = Kaminari.paginate_array(@recommended).page(params[:recomm_page]).per(6)
       format.html {
         @places_json = @places.to_gmaps4rails do |place, marker|
           marker.picture({

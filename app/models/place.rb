@@ -100,11 +100,11 @@ class Place < ActiveRecord::Base
       :except => [:activity_object_id, :address_id, :created_at, :updated_at],
       :include => {
         :address => {}},
-      :methods => [:title, :liked?, :post_activity_id]
+      :methods => [:title, :is_liked, :post_activity_id]
     )
   end
 
-  def liked?
+  def is_liked
     self.post_activity.liked_by?(current_subject)
   end
 
