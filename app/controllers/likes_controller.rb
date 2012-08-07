@@ -6,15 +6,21 @@ class LikesController < ApplicationController
     @like = Like.build(current_subject, current_user, @indirect_id)
 
     if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      correct = current_subject.actor.like @indirect_id.direct_object
+      current_subject.actor.like @indirect_id.direct_object
     end
     
     respond_to do |format|
-      if @like.save
+      status = @like.save
+      format.js {
         format.js
-      else
-        format.js
-      end
+      }
+      format.json {
+        if status
+          render :json => {:success => true} , :callback => params[:callback]
+        else
+          render :json => {:success => false} , :callback => params[:callback]
+        end
+      }
     end
   end
 
@@ -23,15 +29,21 @@ class LikesController < ApplicationController
     @like = Like.find!(current_subject, @indirect_id)
 
     if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      correct = current_subject.actor.unlike @indirect_id.direct_object
+      current_subject.actor.unlike @indirect_id.direct_object
     end
     
     respond_to do |format|
-      if @like.destroy
+      status = @like.destroy
+      format.js {
         format.js
-      else
-        format.js
-      end
+      }
+      format.json {
+        if status
+          render :json => {:success => true} , :callback => params[:callback]
+        else
+          render :json => {:success => false} , :callback => params[:callback]
+        end
+      }
     end
   end
   
