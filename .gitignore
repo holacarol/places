@@ -35,5 +35,8 @@ webrat.log
 /config/development.sphinx.conf
 /db/sphinx/*
 
+# Ignore mobile files
+/public/places_mobile
+
 # Ignore Recommendable files
 dump.rdb

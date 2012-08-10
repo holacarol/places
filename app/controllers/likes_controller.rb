@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   before_filter :authenticate_user!, :indirect_object
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   # POST /activities/1/like.js
   def create
