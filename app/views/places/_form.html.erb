@@ -1,6 +1,6 @@
 <% @place.build_address %>
 <%= form_for @place, :html => {:onkeypress => "return event.keyCode!=13"} do |f| %>
-  <% @place.owner_id = current_subject.try(:actor_id) %>
+  <%# @place.owner_id = current_subject.try(:actor_id) %>
   <%# @place.relation_ids = Relation::Public.instance.id %>
   <% @place.latitude = 0 %>
   <% @place.longitude = 0 %>
@@ -32,8 +32,6 @@
   </div>
 
 
-  <%= f.hidden_field :owner_id %>
-  <input type="hidden" value=<%= Relation::Public.instance.id %> name="place[relation_ids]" id="place_relation_ids">
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
 

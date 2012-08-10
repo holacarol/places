@@ -92,6 +92,20 @@ module Geokit
           end
         end
       end
+
+      # Hard-copied from http://api.rubyonrails.org/classes/ActiveRecord/Base.html#M002310
+      def merge_conditions(*conditions)
+        segments = []
+
+        conditions.each do |condition|
+          unless condition.blank?
+            sql = sanitize_sql(condition)
+            segments << sql unless sql.blank?
+          end
+        end
+
+        "(#{segments.join(') AND (')})" unless segments.empty?
+      end
     end
 
     # this is the callback for auto_geocoding

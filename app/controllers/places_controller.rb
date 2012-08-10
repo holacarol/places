@@ -1,11 +1,14 @@
 class PlacesController < ApplicationController
   include SocialStream::Controllers::Objects
   
-  skip_authorize_resource :only => :new
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
+
+  skip_authorize_resource :only => [:new, :nearby, :create]
+  skip_load_resource :only => :create
 
   belongs_to_subjects :optional => true
 
-  before_filter :profile_subject!, :only => :index
+  before_filter :profile_subject!, :only => [:index, :nearby]
 
   PER_PAGE = 20
 
@@ -104,6 +107,7 @@ class PlacesController < ApplicationController
   end
 
   def create
+    params[:place].merge!(:owner_id => current_subject.try(:actor_id), :relation_ids => Relation::Public.instance.id)
     create! do |success, failure|
       success.html {
         @like = Like.build(current_subject, current_user, @place.post_activity)
@@ -113,6 +117,18 @@ class PlacesController < ApplicationController
       }
     end
   end
+
+  def nearby
+    respond_to do |format|
+      format.json {
+        @nearby = Place.find(:all, :origin => [params[:lat],params[:lng]], :within=>10, :order=>'distance')
+        @nearby.map{|place| place.current_subject = current_subject}
+        render :json => @nearby, :callback => params[:callback]
+      }
+    end
+  end
+
+
 
 
   private

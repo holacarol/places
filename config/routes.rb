@@ -3,6 +3,8 @@ Places::Application.routes.draw do
   match '/places/contact', :to => 'pages#contact'
   match '/places/about', :to => 'pages#about'
 
+  get 'places/nearby'
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   # The priority is based upon order of creation:
