@@ -108,13 +108,23 @@ class PlacesController < ApplicationController
 
   def create
     params[:place].merge!(:owner_id => current_subject.try(:actor_id), :relation_ids => Relation::Public.instance.id)
-    create! do |success, failure|
-      success.html {
+    @place = Place.new(params[:place])
+
+    respond_to do |format|
+      if @place.save
         @like = Like.build(current_subject, current_user, @place.post_activity)
         current_subject.actor.like @place
         @like.save
-        redirect_to @place
-      }
+
+        format.html { redirect_to @place }
+        format.json {
+          @place.current_subject = current_subject
+          render :json => {:success => true, :place => @place}, :status => :created, :location => @place, :callback => params[:callback] 
+        }
+      else
+        format.html { render :action => "new" }
+        format.json { render :json => {:success => false, :errors => @place.errors}, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -127,8 +137,6 @@ class PlacesController < ApplicationController
       }
     end
   end
-
-
 
 
   private

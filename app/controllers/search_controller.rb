@@ -29,6 +29,8 @@ class SearchController < ApplicationController
       }
 
       format.json {
+        @search_result.map{ |place| place.current_subject = current_subject}
+
         json_obj = (
           params[:type].present? ?
           { params[:type].pluralize => @search_result } :
