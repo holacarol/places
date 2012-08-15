@@ -114,7 +114,7 @@ class Place < ActiveRecord::Base
 
   protected
   def format_website
-    if self.url.present? && !self.url.start_with?("http://")
+    if self.url.present? && !(self.url.start_with?("http://") || self.url.start_with?("https://"))
       self.url = "http://" + self.url
     end
   end
