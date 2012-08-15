@@ -16,6 +16,27 @@ class CommentsController < ApplicationController
   	unless params[:comment][:owner_id]
   		params[:comment].merge!(:owner_id => current_subject.try(:actor_id))
   	end
-  	create!
+
+    @comment = Comment.new(params[:comment])
+
+    respond_to do |format|
+      if @comment.save
+        format.js
+        format.json {
+          render :json => {
+            :comment =>
+            {'author' => @comment.author,
+            'thumb' => root_url + @comment.author.logo.url(:actor),
+            'text' => @comment.description,
+            'type' => @comment.post_activity.from_contact?(current_subject) ? 'friend' : 'other'}
+            }, :status => :created, :callback => params[:callback]
+        }
+      else
+        format.js
+        format.json { render :json => {:success => false, :errors => @comment.errors}, :status => :unprocessable_entity }
+      end
+    end
+
+
   end
 end
