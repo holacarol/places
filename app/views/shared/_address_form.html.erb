@@ -1,9 +1,9 @@
 <%= form.fields_for :address do |f| %>
-    <%= f.text_field :streetAddress, :size => 21, :class => "street" %>
-    <%= f.text_field :postalCode, :size => 7, :class => "postalcode" %>
-    <%= f.text_field :locality, :size => 12, :class => "locality" %>
-    <%= f.text_field :region, :size => 12, :class => "region" %>
-    <%= f.text_field :country, :size => 12, :class => "country" %>
+    <%= f.text_field :streetAddress, :class => "street" %>
+    <%= f.text_field :postalCode, :class => "postalcode" %>
+    <%= f.text_field :locality, :class => "locality" %>
+    <%= f.text_field :region, :class => "region" %>
+    <%= f.text_field :country, :class => "country" %>
 <% end %>
 
 <%= javascript_tag do %>

@@ -1,17 +1,20 @@
-/* Places */
+@import "colors";
 
-.place_image {
-  float: left;
-  padding: 10px;
-}
+/*********** Variables ***************/
+$list-border: #CDCDCD;
+$on-background: #DDDDDD;
+$on-border: #CCCCCC;
 
-.place_info {
-  padding-top: 10px;
-}
+$big-font: 18px;
+
+
+/*********** Places wall and infowindow ****************/
 
 .place_like_link {
   padding-top: 5px;
 }
+
+/********** Place show y form *************/
 
 #place_comments {
   margin: 20px;
@@ -30,96 +33,39 @@
   display:block;
 }
 
-/* Place card */
-.place_card {
-  text-align: center;
-  padding-top: 20px;
-}
-
-.place_card_frame {
-  text-align: left;
-  width: 250px;
-  padding: 10px;
-  height: 130px;
-  border: 2px solid gray;
-  border-radius: 6px;
-  box-shadow: 4px 4px 3px #AAAAAA;
-  margin: auto;
-  position: relative;
-}
-
-.place_icon {
-  float: right;
-  margin: 0 0 10px 10px;
-}
-
 .place_name {
-//  margin-top: 10px;
-  font-size: 18px;
+  font-size: $big-font;
   font-weight: bold;
-  color: #1F4A75;
+  color: $main-color;
 }
 
 .place_padding {
   padding: 2px;
 }
 
+.place_like_margin {
+  margin-bottom: -2px;
+}
+
 .place_big {
-  font-size: 18px;
+  font-size: $big-font;
   padding: 0 0 5px 5px;
 }
 
-.place_description {
-  font-size: 12px;
-  position: absolute;
-  bottom: 30px;
-  left: 20px;
-}
-
 .place_options {
-  padding-top: 7px;
   text-align: right;
   display: inline-block;
   position: absolute;
-  right: 0px;
-  top: 15px;
+  right: 0;
+  bottom: 0;
 }
 
 .place_create {
   margin: 0 0 0 12px;
 }
 
-.more_info {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.revert_info {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.place_card_front {
-  display: none;
-}
-
-.place_card_back {
-  display: none;
-}
-
-.place_card_addresstag {
-  float: left;
-}
-
-.place_card_address {
-//  margin-left: 50px;
-}
-
 .place_card_info {
- //margin-bottom: 5px;
- color: #999999;
+ color: gray;
  font-size: 12px;
 }
 
@@ -137,7 +83,7 @@
 }
 
 .place_show_form {
-  margin: 0 10px 0px 10px;
+  margin: 0 10px 0 10px;
   position: relative;
 }
 
@@ -145,16 +91,37 @@
   display: inline-block;
 }
 
-/* Place item */
+.name_width {
+  width: 496px;
+}
+
+.street {
+  width: 129px;
+}
+
+.postalcode {
+  width: 69px;
+}
+
+.locality, .region, .country {
+  width: 90px;
+}
+
+.phone_number_width {
+  width: 129px;
+}
+
+.url_width {
+  width: 152px;
+}
+
+
+/**************** Place item and list ********************/
+
 .place_list_item {
-//  margin: 10px 10px 0 10px;
-  //border: 2px solid gray;
-  border-bottom: 1px solid #CDCDCD;
-//  border-radius: 8px;
-//  box-shadow: 0 4px 7px #AAAAAA;
+  border-bottom: 1px solid $list-border;
   padding: 10px;
   text-align: left;
-//  width: 465px;
   min-height: 45px;
   position: relative;
 }
@@ -169,25 +136,8 @@
   color: gray;
 }
 
-.place_list_comments {
-  margin: 0 0 10px 25px;
-}
-
-.place_list_name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
 .place_list_content {
   margin-left: 52px;
-}
-
-.place_list_actions {
-  //text-align: center;
-  //margin: 0 10px 10px 10px;
-  //width: 490px;
-  display: inline-block;
-  float: right;
 }
 
 .place_list_add {
@@ -210,7 +160,7 @@
   width: 22px;
 }
 .place_list_city {
-  color: #1F4A75;
+  color: $main-color;
   font-size: 12px;
   margin-bottom: 2px;
 }
@@ -224,14 +174,10 @@
   margin-top: 7px;
 }
 
-.place_list_discover {
-  display: inline-block;
-}
-
 .on {
-  background: #DDDDDD;
+  background: $on-background;
   cursor: pointer;
-  border-color: #CCCCCC;
+  border-color: $on-border;
   padding: 6px 12px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -239,14 +185,9 @@
 }
 
 .off {
-  background: #1F4A75;
+  @extend .on;
+  background: $main-color;
   color: white;
-  cursor: pointer;
-  border-color: #CCCCCC;
-  padding: 6px 12px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 12px;
 }
 
 .view_selected {
@@ -258,32 +199,18 @@
 }
 
 #my_button {
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 #friends_button {
   margin-left: -3px;
-  border-width: 0 1px;
+  border-width: 0 0 0 1px;
   border-style: solid;
 }
 
 #recommended_button {
-  border-radius: 0px 5px 5px 0px;
-  margin-left: -3px;
-}
-
-#button_map {
-  margin-left: -3px;
-  border-radius: 0px 6px 6px 0px;
-}
-
-#button_list {
-  border-radius: 6px 0px 0px 6px;
-}
-
-.place_list_selector {
-  position: relative;
-  top: 9px;
+  @extend #friends_button;
+  border-radius: 0 5px 5px 0;
 }
 
 #places_container {
@@ -299,7 +226,7 @@
   display: inline-block;
   width: 560px;
   vertical-align: top;
-  border-top: 1px solid #CDCDCD;
+  border-top: 1px solid $list-border;
 }
 
 #place_map, #friend_map, #recommended_map {
@@ -310,10 +237,6 @@
 
 .hidden {
   display: none;
-}
-
-.visible {
-  display: inline-block;
 }
 
 .offscreen {
@@ -328,7 +251,7 @@
 }
 
 .watermark {
-  color: #879EB5;
+  color: $auxiliar-color;
 }
 
 .place_window_title {

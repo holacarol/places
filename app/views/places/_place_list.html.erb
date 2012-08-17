@@ -5,7 +5,7 @@
       <%= place_star(place.post_activity) %>
     </div>
     <div class="place_list_content">
-      <div class="place_list_name"><%= link_to place.title, place %></div>
+      <div class="place_name"><%= link_to place.title, place %></div>
       <div class="place_list_city"><%= place.address.locality %>, <%=place.address.country%></div>
       <div class="place_list_options">
         <%= render :partial => 'places/place_like_sentence', :locals => { :place => place } %>

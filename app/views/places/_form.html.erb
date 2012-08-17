@@ -20,13 +20,11 @@
 
   <div class="place_show_form">
     <div class="place_show_info">
-      <div class="place_padding"><%= f.text_field :title, :size => 46, :class => "place_name", :oninput =>"keyUpEvent();" %></div>
+      <div class="place_padding"><%= f.text_field :title, :class => "place_name name_width", :oninput =>"keyUpEvent();" %></div>
+      <div class="place_padding"><%= render :partial => 'shared/address_form', :locals => {:form => f} %></div>
       <div class="place_padding">
-        <%= render :partial => 'shared/address_form', :locals => {:form => f} %>
-      </div>
-      <div class="place_padding">
-        <%= f.text_field :phone_number, :size => 21, :class => "place_phone_number" %>
-        <%= f.text_field :url, :size => 27, :class => "place_url" %>
+        <%= f.text_field :phone_number, :class => "place_phone_number phone_number_width" %>
+        <%= f.text_field :url, :class => "place_url url_width" %>
       </div>
     </div>
   </div>
