@@ -47,6 +47,10 @@ en:
     view:
       list: "List view"
       map: "Map view"
+    tabs:
+      mine: "My places"
+      friends: "Friends places"
+      recommended: "Recommended"
   activity:
     verb:
       like:

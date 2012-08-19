@@ -47,12 +47,16 @@ es:
     view:
       list: "Lista"
       map: "Mapa"
+    tabs:
+      mine: "Mis lugares"
+      friends: "De amigos"
+      recommended: "Recomendados"
   activity:
     verb:
       like:
         Place:
           title: "A %{subject} le gusta %{activity_object}."
-          like: "A mí también me gusta"
+          like: "También me gusta"
           unlike: "Ya no me gusta"
     like_construction:
       like_friends:

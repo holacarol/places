@@ -29,9 +29,9 @@
 <%if profile_subject_is_current?%>
   <div class="place_list_more">
     <div class="place_list_map">
-      <a id="my_button" class="off" title="My Places">My places</a>
-      <a id="friends_button" class="on" title="Friends Places">Friends places</a>
-      <a id="recommended_button" class="on" title="Recommended">Recommended</a>
+      <a id="my_button" class="off" title="My Places"><%= t('place.tabs.mine') %></a>
+      <a id="friends_button" class="on" title="Friends Places"><%= t('place.tabs.friends') %></a>
+      <a id="recommended_button" class="on" title="Recommended"><%= t('place.tabs.recommended') %></a>
     </div>
     <div class ="place_list_add">
         <%= render :partial => 'places/search' %>
