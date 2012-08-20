@@ -1,6 +1,6 @@
 class CreateSocialStreamDocuments < ActiveRecord::Migration
   
-  def self.up
+  def up
     create_table "documents", :force => true do |t|
       t.string   "type"
       t.integer  "activity_object_id"
@@ -16,7 +16,7 @@ class CreateSocialStreamDocuments < ActiveRecord::Migration
     
   end
   
-  def self.down
+  def down
     remove_foreign_key "documents", :name => "documents_on_activity_object_id"
     drop_table :documents
   end

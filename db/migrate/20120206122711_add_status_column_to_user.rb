@@ -1,9 +1,9 @@
 class AddStatusColumnToUser < ActiveRecord::Migration
-  def self.up
+  def up
      add_column :users, :status, :string, :default => "chat"
   end
 
-  def self.down
+  def down
     remove_column :users, :status
   end
 end

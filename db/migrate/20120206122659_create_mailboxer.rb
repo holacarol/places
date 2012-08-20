@@ -1,5 +1,5 @@
 class CreateMailboxer < ActiveRecord::Migration
-  def self.up    
+  def up    
   #Tables
   	#Conversations
     create_table :conversations do |t|
@@ -48,7 +48,7 @@ class CreateMailboxer < ActiveRecord::Migration
   	add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
   end
   
-  def self.down
+  def down
   #Tables  	
   	remove_foreign_key "receipts", :name => "receipts_on_notification_id"
   	remove_foreign_key "notifications", :name => "notifications_on_conversation_id"

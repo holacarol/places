@@ -1,5 +1,5 @@
 class CreateSocialStream < ActiveRecord::Migration
-  def self.up
+  def up
     create_table "activities", :force => true do |t|
       t.integer  "contact_id"
       t.integer  "activity_verb_id"
@@ -258,7 +258,7 @@ class CreateSocialStream < ActiveRecord::Migration
   end
   
   
-  def self.down
+  def down
     remove_foreign_key "activities", :name => "index_activities_on_activity_verb_id"
     
     remove_foreign_key "activity_object_activities", :name => "index_activity_object_activities_on_activity_id"

@@ -1,9 +1,9 @@
 class AddChatEnabledColumnToUser < ActiveRecord::Migration
-  def self.up
+  def up
      add_column :users, :chat_enabled, :boolean, :default => true
   end
 
-  def self.down
+  def down
     remove_column :users, :chat_enabled
   end
 end

@@ -1,9 +1,9 @@
 class AddConnectedColumnToUser < ActiveRecord::Migration
-  def self.up
+  def up
      add_column :users, :connected, :boolean, :default => false
   end
 
-  def self.down
+  def down
     remove_column :users, :connected
   end
 end

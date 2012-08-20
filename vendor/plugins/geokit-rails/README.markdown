@@ -500,11 +500,11 @@ Geokit plugin the migration would be as follows.
 
     class AddIndexOPageLatAndLng < ActiveRecord::Migration
 
-      def self.up
+      def up
         add_index  :pages, [:lat, :lng]
       end
 
-      def self.down
+      def down
         remove_index  :pages, [:lat, :lng]
       end
     end

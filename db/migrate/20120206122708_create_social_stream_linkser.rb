@@ -1,5 +1,5 @@
 class CreateSocialStreamLinkser < ActiveRecord::Migration
-  def self.up
+  def up
     create_table "links", :force => true do |t|
       t.integer  "activity_object_id"
       t.datetime "created_at"
@@ -14,7 +14,7 @@ class CreateSocialStreamLinkser < ActiveRecord::Migration
     add_index "links", "activity_object_id"
   end
 
-  def self.down
+  def down
     remove_foreign_key "links", :name => "links_on_activity_object_id"
     drop_table :links
   end

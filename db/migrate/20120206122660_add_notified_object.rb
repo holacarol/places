@@ -1,5 +1,5 @@
 class AddNotifiedObject < ActiveRecord::Migration
-  def self.up
+  def up
     change_table :notifications do |t|
       t.references :notified_object, :polymorphic => true
       t.remove :object_id
@@ -7,7 +7,7 @@ class AddNotifiedObject < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     change_table :notifications do |t|
       t.remove :notified_object_id
       t.remove :notified_object_type
