@@ -82,6 +82,6 @@ module Places
     config.assets.version = '1.0'
 
     #Initialize app and connect to DB while precompiling assets
-    config.assets.initialize_on_precompile = false
+    #config.assets.initialize_on_precompile = false
   end
 end
