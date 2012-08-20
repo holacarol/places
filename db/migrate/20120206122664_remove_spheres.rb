@@ -6,7 +6,7 @@ class RemoveSpheres < ActiveRecord::Migration
 
     remove_column :relations, :sphere_id
 
-    drop_table :spheres
+    drop_table "spheres"
   end
 
   def down
