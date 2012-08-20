@@ -57,4 +57,7 @@ Places::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # DEVISE: Default URL option for mailer
+  config.action_mailer.default_url_options = { :host => 'myplaces.herokuapp.com' }
 end
