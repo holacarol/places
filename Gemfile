@@ -30,7 +30,7 @@ end
 gem 'jquery-rails'
 
 # Gem used for javascript
-gem 'therubyracer'
+#gem 'therubyracer'
 
 # Gems for tests with RSpec
 group :development do
