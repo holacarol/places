@@ -1,0 +1,4 @@
+development:
+  database_number: "0"
+production:
+  database_number: "1"

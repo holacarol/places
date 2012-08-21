@@ -33,6 +33,7 @@ webrat.log
 
 # Ignore Sphinx files
 /config/development.sphinx.conf
+/config/porduction.sphinx.conf
 /db/sphinx/*
 
 # Ignore mobile files
