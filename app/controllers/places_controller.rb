@@ -113,8 +113,10 @@ class PlacesController < ApplicationController
     respond_to do |format|
       if @place.save
         @like = Like.build(current_subject, current_user, @place.post_activity)
-        current_subject.actor.like @place
-        @like.save
+        status = @like.save
+        if status
+          current_subject.actor.like @place
+        end
 
         format.html { redirect_to @place }
         format.json {

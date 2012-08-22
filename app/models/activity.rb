@@ -241,7 +241,7 @@ class Activity < ActiveRecord::Base
   end
 
   def notificable?
-    is_root? or ['post','update'].include?(root.verb)
+    is_root? or (['post','update'].include?(root.verb) && !root.direct_object.is_a?(Place))
   end
 
   def notify

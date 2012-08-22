@@ -33,7 +33,7 @@ webrat.log
 
 # Ignore Sphinx files
 /config/development.sphinx.conf
-/config/porduction.sphinx.conf
+/config/production.sphinx.conf
 /db/sphinx/*
 
 # Ignore mobile files
@@ -41,3 +41,6 @@ webrat.log
 
 # Ignore Recommendable files
 dump.rdb
+
+# Ignore crontab file
+/config/crontab

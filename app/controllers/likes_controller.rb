@@ -5,13 +5,15 @@ class LikesController < ApplicationController
   # POST /activities/1/like.js
   def create
     @like = Like.build(current_subject, current_user, @indirect_id)
-
-    if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      current_subject.actor.like @indirect_id.direct_object
-    end
     
     respond_to do |format|
       status = @like.save
+      if status
+        if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
+          current_subject.actor.like @indirect_id.direct_object
+        end
+      end
+
       format.js {
         format.js
       }
@@ -28,13 +30,15 @@ class LikesController < ApplicationController
   # DELETE /activities/1/like.js
   def destroy
     @like = Like.find!(current_subject, @indirect_id)
-
-    if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
-      current_subject.actor.unlike @indirect_id.direct_object
-    end
     
     respond_to do |format|
       status = @like.destroy
+      if status
+        if (@indirect_id.direct_object.present? && @indirect_id.direct_object.is_a?(Place))
+          current_subject.actor.unlike @indirect_id.direct_object
+        end
+      end
+
       format.js {
         format.js
       }

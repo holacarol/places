@@ -58,7 +58,7 @@ gem 'recommendable', '1.1.2'
 gem 'resque-loner'
 
 # Cron tasks
-gem 'whenever', :require => false
+# gem 'whenever', :require => false
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
