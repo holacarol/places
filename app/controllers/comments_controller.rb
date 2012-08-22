@@ -23,10 +23,11 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js
         format.json {
+          image_url = root_url.end_with?("/")? root_url[0, root_url.length-1] : root_url
           render :json => {
             :comment =>
             {'author' => @comment.author,
-            'thumb' => root_url + @comment.author.logo.url(:actor),
+            'thumb' => image_url + @comment.author.logo.url(:actor),
             'text' => @comment.description,
             'type' => @comment.post_activity.from_contact?(current_subject) ? 'friend' : 'other'}
             }, :status => :created, :callback => params[:callback]
