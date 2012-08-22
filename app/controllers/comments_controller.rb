@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
           render :json => {
             :comment =>
             {'author' => @comment.author,
-            'thumb' => image_url + @comment.author.logo.url(:actor),
+            'thumb' => @comment.author.logo.url(:actor),
             'text' => @comment.description,
             'type' => @comment.post_activity.from_contact?(current_subject) ? 'friend' : 'other'}
             }, :status => :created, :callback => params[:callback]

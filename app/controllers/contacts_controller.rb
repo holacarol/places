@@ -83,8 +83,8 @@ class ContactsController < ApplicationController
           'slug'  => c.receiver.slug,
           'url'   => polymorphic_url(c.receiver_subject),
           'image' => {
-            'url' => image_url + c.receiver.logo.url,
-            'thumb' => image_url + c.receiver.logo.url(:actor)
+            'url' => c.receiver.logo.url,
+            'thumb' => c.receiver.logo.url(:actor)
           }
         }
       end

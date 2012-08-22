@@ -97,7 +97,7 @@ class PlacesController < ApplicationController
         :place => @place, 
         :comments => @place.post_activity.comments.map{ |activity| 
           {'author' => activity.direct_activity_object.author,
-          'thumb' => root_url + activity.direct_activity_object.author.logo.url(:actor),
+          'thumb' => activity.direct_activity_object.author.logo.url(:actor),
           'text' => activity.direct_activity_object.description,
           'type' => activity.from_contact?(current_subject) ? 'friend' : 'other'}
           }
