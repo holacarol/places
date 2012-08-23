@@ -46,7 +46,7 @@ Places::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -60,7 +60,4 @@ Places::Application.configure do
 
   # DEVISE: Default URL option for mailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
 end

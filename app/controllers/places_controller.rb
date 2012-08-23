@@ -96,8 +96,10 @@ class PlacesController < ApplicationController
         render :json => {
         :place => @place, 
         :comments => @place.post_activity.comments.map{ |activity| 
+          thumb = activity.direct_activity_object.author.logo.url(:actor)
+          thumb_url = thumb.start_with?("/") ? thumb : "/" << thumb
           {'author' => activity.direct_activity_object.author,
-          'thumb' => activity.direct_activity_object.author.logo.url(:actor),
+          'thumb' => thumb_url,
           'text' => activity.direct_activity_object.description,
           'type' => activity.from_contact?(current_subject) ? 'friend' : 'other'}
           }

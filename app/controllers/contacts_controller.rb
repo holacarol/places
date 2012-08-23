@@ -72,6 +72,11 @@ class ContactsController < ApplicationController
   def to_json(contacts)
     image_url = root_url.end_with?("/")? root_url[0, root_url.length-1] : root_url
     contacts.map{ |c|
+      thumb = c.receiver.logo.url(:actor)
+      thumb_url = thumb.start_with?("/") ? thumb : "/" << thumb
+      image = c.receiver.logo.url
+      image_url = image.start_with?("/") ? image : "/" << image
+
       if params[:form].present?
         {
           'key' => c.receiver_id.to_s,
@@ -83,8 +88,8 @@ class ContactsController < ApplicationController
           'slug'  => c.receiver.slug,
           'url'   => polymorphic_url(c.receiver_subject),
           'image' => {
-            'url' => c.receiver.logo.url,
-            'thumb' => c.receiver.logo.url(:actor)
+            'url' => image_url,
+            'thumb' => thumb_url
           }
         }
       end
