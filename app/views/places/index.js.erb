@@ -6,4 +6,14 @@
 	$('#recommended_list').html('<%= escape_javascript render(:partial => "places/places_pag", :locals => {:places_pag => @recommended_pag, :page => :recomm_page}) %>');
 <% end %>
 
+  $('.place_contacts').hide();
+  $('.place_contacts_summary').tipsy({
+    html: true,
+    hoverable: true,
+    opacity: 0.95,
+    title: function(){
+      return $(this).siblings('.place_contacts').html();
+    }
+  });
+
 		
