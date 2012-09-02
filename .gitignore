@@ -44,3 +44,6 @@ dump.rdb
 
 # Ignore crontab file
 /config/crontab
+
+# Ignore compiled assets
+/public/assets
