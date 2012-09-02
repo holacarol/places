@@ -23,39 +23,39 @@ class PlacesController < ApplicationController
       format.html {
         @places_json = @places.to_gmaps4rails do |place, marker|
           marker.picture({
-                  :picture => "/assets/mapmarker22x32.png",
-                  :width   => 22,
-                  :height  => 32,
-                  :shadow_picture => "/assets/shadow32x32.png",
+                  :picture => "/assets/blue4.png",
+                  :width   => 24,
+                  :height  => 33,
+                  :shadow_picture => "/assets/shadow.png",
                   :shadow_width => 32,
-                  :shadow_height => 32,
-                  :shadow_anchor => [11, 32]
+                  :shadow_height => 33,
+                  :shadow_anchor => [12, 33]
                  })
           marker.title   place.title
           marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
         @friends_json = @friends.to_gmaps4rails do |place, marker|
           marker.picture({
-                  :picture => "/assets/greenmarker22x32.png",
-                  :width   => 22,
-                  :height  => 32,
-                  :shadow_picture => "/assets/shadow32x32.png",
+                  :picture => "/assets/green4.png",
+                  :width   => 24,
+                  :height  => 33,
+                  :shadow_picture => "/assets/shadow.png",
                   :shadow_width => 32,
-                  :shadow_height => 32,
-                  :shadow_anchor => [11, 32]
+                  :shadow_height => 33,
+                  :shadow_anchor => [12, 33]
                  })
           marker.title   place.title
           marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
         end
         @recommended_json = @recommended.to_gmaps4rails do |place, marker|
           marker.picture({
-                  :picture => "/assets/borderorangemarker22x32.png",
-                  :width   => 22,
-                  :height  => 32,
-                  :shadow_picture => "/assets/shadow32x32.png",
+                  :picture => "/assets/red4.png",
+                  :width   => 24,
+                  :height  => 33,
+                  :shadow_picture => "/assets/shadow.png",
                   :shadow_width => 32,
-                  :shadow_height => 32,
-                  :shadow_anchor => [11, 32]
+                  :shadow_height => 33,
+                  :shadow_anchor => [12, 33]
                  })
           marker.title   place.title
           marker.infowindow render_to_string(:partial => "/places/place_window", :locals => { :place => place })
@@ -89,7 +89,18 @@ class PlacesController < ApplicationController
     end
     show! do |format|
       format.html {
-        @json = @place.to_gmaps4rails
+        @json = @place.to_gmaps4rails do |place, marker|
+          marker.picture({
+                  :picture => "/assets/blue4.png",
+                  :width   => 24,
+                  :height  => 33,
+                  :shadow_picture => "/assets/shadow.png",
+                  :shadow_width => 32,
+                  :shadow_height => 33,
+                  :shadow_anchor => [12, 33]
+                 })
+          marker.title   place.title
+        end
       }
       format.json { 
         @place.current_subject = current_subject
