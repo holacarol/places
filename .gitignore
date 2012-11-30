@@ -47,3 +47,6 @@ dump.rdb
 
 # Ignore compiled assets
 /public/assets
+
+# Ignore capistrano files
+/config/deploy.rb
