@@ -2,3 +2,5 @@ development:
   database_number: "0"
 production:
   database_number: "1"
+test:
+  database_number: "2"
