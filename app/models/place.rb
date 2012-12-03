@@ -72,7 +72,7 @@ class Place < ActiveRecord::Base
     # Total number of likes of the place, including me
     likes = self.post_activity.children.joins(:activity_verb).where('activity_verbs.name' => "like")
     friend_likes = likes.joins(:channel).joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
-      where('contacts.sender_id' => subject).where('contacts.ties_count' => 1)
+      where('contacts.sender_id' => subject).where('contacts.ties_count > 0')
     friend_likes.each do |a|
       friends << a.sender
     end

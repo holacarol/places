@@ -83,7 +83,7 @@ module PlacelikesHelper
 		# Total number of likes of the place, including me
 		likes = place.post_activity.children.joins(:activity_verb).where('activity_verbs.name' => "like")
 		friend_likes = likes.joins(:channel).joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
-			where('contacts.sender_id' => current_subject).where('contacts.ties_count' => 1)
+			where('contacts.sender_id' => current_subject).where('contacts.ties_count > 0')
 
 		friend_likes.count
 	end

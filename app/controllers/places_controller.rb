@@ -181,7 +181,7 @@ class PlacesController < ApplicationController
       where('activity_verbs.name' => "like").
       joins('INNER JOIN channels ON channels.id = activities.channel_id').
       joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
-      where('contacts.sender_id' => current_subject).where('contacts.ties_count' => 1)
+      where('contacts.sender_id' => current_subject).where('contacts.ties_count > 0')
     end
 
 end

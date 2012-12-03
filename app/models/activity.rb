@@ -171,7 +171,7 @@ class Activity < ActiveRecord::Base
 
     children.includes(:activity_objects).where('activity_objects.object_type' => "Comment").joins(:channel).
       joins('INNER JOIN contacts ON contacts.receiver_id = channels.author_id').
-      where((contacts[:sender_id].eq(Actor.normalize_id(subject)).and(contacts[:ties_count].eq(1))).
+      where((contacts[:sender_id].eq(Actor.normalize_id(subject)).and(contacts[:ties_count].gt(0))).
         or(channels[:author_id].eq(Actor.normalize_id(subject)))).order("activities.created_at asc")
   end
 
